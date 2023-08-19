@@ -33,3 +33,12 @@
       </div>
 	</div>
 </div>
+<div class="popup_Alert" id="popup_Alert" >
+	<div class="popup_cont_wrap">
+		<div class="pop_cont" id="popup_message"></div>
+		<div class="popBtn_wrap">
+			<div><a href="#" class="btn_cancel" id="popup_cancel">취소</a></div>
+			<div><a href="#" class="btn_ok" id="popup_ok">확인</a></div>
+		</div>
+	</div>
+</div>

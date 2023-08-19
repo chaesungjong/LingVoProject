@@ -77,4 +77,11 @@
   </select>
   <!-- 작업중지 상황별 메시지 리스트 End -->
 
+
+  <!-- 작업중지 상황별 메시지 리스트 Start -->
+  <select id="RequestToEndTheWork" statementType="CALLABLE">
+    { call [dbo].[RequestToEndTheWork]( #{issueGubun}, #{etcParam1} ) }
+  </select>
+  <!-- 작업중지 상황별 메시지 리스트 End -->
+
 </mapper>

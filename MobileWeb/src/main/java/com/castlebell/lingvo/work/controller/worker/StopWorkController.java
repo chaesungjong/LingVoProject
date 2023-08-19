@@ -141,6 +141,23 @@ public class StopWorkController extends CommonController{
             return "redirect:/mmb/login"; 
         }
 
+        WorkSafetyCheck workSafetyCheck = (WorkSafetyCheck) session.getAttribute("WorkSafetyCheck");
+        Member member = (Member) session.getAttribute("member");
+
+        String userID = member.getUserid(); // 사용자 ID
+        String siteCode = member.getsiteCode(); // 현장 코드
+        String issueGubun = StringUtil.objectToString(request.getParameter("issueGubun")); // 이슈 구분
+        String location = StringUtil.objectToString(request.getParameter("location")); // 현장 위치
+        String reqReason = StringUtil.objectToString(request.getParameter("reqReason")); // 요청 사유
+        String imgPaths = StringUtil.objectToString(request.getParameter("imgPaths")); // 사진 경로
+        String state = StringUtil.objectToString(request.getParameter("state")); // 상태
+        String ip = request.getRemoteAddr(); // 접속자 IP
+        String workSeq = StringUtil.objectToString(request.getParameter("workSeq")); // 작업 순번
+
+
+        List<workIssueMsgListResponse> result = workService.RequestToEndTheWork("regist",userID,siteCode,issueGubun,location,reqReason,imgPaths,state,workSeq);
+        
+
         // 작업 중단 요청에 필요한 데이터 추출 및 처리 과정 (현재 로직에는 처리 로직이 구현되지 않았음)
 
         return StopWorkMapping + "/requestPictureComfirm";

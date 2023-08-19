@@ -106,4 +106,15 @@ public class WorkServiceImpl implements WorkService{
     public List<workIssueMsgListResponse> workIssueMsgList(HashMap<String, String> map) {
         return workMapper.getWorkIssueMsgList(map);
     }
+
+    /**
+     * 작업 중지 요청 처리
+     * @param map 요청 파라미터 맵
+     * @return 작업 이슈 메시지 응답 목록
+     */
+    @Override
+    public List<workIssueMsgListResponse> RequestToEndTheWork(String gubun, String userID, String sitCode, String isuusuGubun, String location, String reqReason, String imgPaths,String state, String workSeq) {
+
+        //return workMapper.getWorkIssueMsgList(map);
+    }
 }

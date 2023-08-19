@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<input type="hidden" id="message"    value="${message}">
+<input type="hidden" id="messageList"    value="${messageList}">
 <div id="container">		
     <div class="info_wrap">			
         <div class="txt_h3">작업 전 안전예방활동</div>			

@@ -43,6 +43,13 @@ public interface WorkService {
      * @return
      */
     List<workIssueMsgListResponse> workIssueMsgList(HashMap<String, String> map);
+
+    /**
+     * 작업 중지 요청
+     * @param HashMap
+     * @return
+     */
+    List<workIssueMsgListResponse> RequestToEndTheWork(String gubun, String userID, String sitCode, String isuusuGubun, String location, String reqReason, String imgPaths,String state, String workSeq);
     
 
 }

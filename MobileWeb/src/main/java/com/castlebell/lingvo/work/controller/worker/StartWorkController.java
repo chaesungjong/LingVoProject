@@ -112,13 +112,11 @@ public class StartWorkController extends CommonController {
         workClassMsgListRequest.setWorkType(request.getParameter("workType"));
 
         List<WorkClassMsgListResponse> workClassMsgList = workService.getWorkClassMsgList(workClassMsgListRequest);
-        List<String> message = new ArrayList<>();
 
-        for (WorkClassMsgListResponse response : workClassMsgList) {
-            message.add(response.getMessage());
-        }
 
-        model.addAttribute("message", message);			
+
+
+        model.addAttribute("messageList", workClassMsgList);			
 
         return StartWorkMapping + "/workCheckStep";
     }
