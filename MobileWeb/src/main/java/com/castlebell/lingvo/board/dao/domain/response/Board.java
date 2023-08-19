@@ -16,6 +16,27 @@ public class Board implements Serializable {
     private int hit;
     private String regdate;
     private String seq;
+    private String imgPaths;
+
+    public String getUserid() {
+        return this.userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public String getMainViewYN() {
+        return this.mainViewYN;
+    }
+
+    public String getImgPaths() {
+        return this.imgPaths;
+    }
+
+    public void setImgPaths(String imgPaths) {
+        this.imgPaths = imgPaths;
+    }
 
     public String getSeq() {
         return seq;
@@ -113,8 +134,10 @@ public class Board implements Serializable {
         this.regdate = regdate;
     }
 
+    
+
     @Override
     public String toString(){
-        return "Board [userid=" + userid + ", category=" + category + ", title=" + title + ", content=" + content + ", userId=" + userId + ", url=" + url + ", state=" + state + ", mainViewYN=" + mainViewYN + ", importantYN=" + importantYN + ", hit=" + hit + ", regdate=" + regdate + "]";
+        return "Board [userid=" + userid + ", category=" + category + ", title=" + title + ", content=" + content + ", userId=" + userId + ", url=" + url + ", state=" + state + ", mainViewYN=" + mainViewYN + ", importantYN=" + importantYN + ", hit=" + hit + ", regdate=" + regdate + ", imgPaths=" + imgPaths + "]";
     }
 }

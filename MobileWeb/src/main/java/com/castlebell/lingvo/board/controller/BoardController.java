@@ -64,4 +64,42 @@ public class BoardController {
 
 	    return url;
 	}
+
+	
+	/**
+	 * 십짱TV 정보 가져오기
+	 * @return
+	 */
+    @RequestMapping(value = "/videoBoard", method=RequestMethod.GET)
+	public String videoBoard(HttpServletRequest request, Model model) {
+
+		logger.debug("videoBoard 진입");
+
+		String Gubun = StringUtil.objectToString(request.getParameter("Gubun"));
+		Gubun = "TV";
+		String Seq = StringUtil.objectToString(request.getParameter("seq"));
+		String url = "board/videoBoard";
+
+		if(Gubun == null || Gubun.equals("")){
+			return "redirect:/work/worker/main";
+		}
+		
+		// if(!"".equals(Seq)){
+		// 	url =  "board/noticeBoardDitail";
+		// }
+
+		NewsFilter notice = new NewsFilter();
+		notice.setGubun(Gubun);
+		notice.setPageNo("");
+		notice.setPageSize("");
+		notice.setEdate("");
+		notice.setEdate("");
+		notice.setSearchGubun("");
+		notice.setSearchVal(Seq);
+
+		List<Board> noticeList = boardservice.getboardList(notice);
+		model.addAttribute("list", noticeList);
+
+	    return url;
+	}
 }

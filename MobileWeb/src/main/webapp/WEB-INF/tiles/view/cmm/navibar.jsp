@@ -18,6 +18,7 @@
 			<li><a href="/work/worker/end/workReview">작업 후기</a></li>
 			<li><a href="/cs/emrContact">비상연락망</a></li>
 			<li><a href="/board/noticeBoard?Gubun=Notice">공지 사항</a></li>
+			<li><a href="/board/videoBoard">십짱TV</a></li>
 		</ul>
 		<!--<div class="tit_category">고객센터</div>
 		<ul>
@@ -31,14 +32,5 @@
 			<li><a href="#">생체 인증 로그인 설정</a></li>
 		</ul> -->
       </div>
-	</div>
-</div>
-<div class="popup_Alert" id="popup_Alert" >
-	<div class="popup_cont_wrap">
-		<div class="pop_cont" id="popup_message"></div>
-		<div class="popBtn_wrap">
-			<div><a href="#" class="btn_cancel" id="popup_cancel">취소</a></div>
-			<div><a href="#" class="btn_ok" id="popup_ok">확인</a></div>
-		</div>
 	</div>
 </div>

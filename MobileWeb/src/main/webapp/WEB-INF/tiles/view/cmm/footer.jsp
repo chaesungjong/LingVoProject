@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="currentURL" value="${requestScope['javax.servlet.forward.request_uri']}" />
-<c:if test="${fn:contains(currentURL, '/work/worker/main') or fn:contains(currentURL, '/board/noticeBoard') or fn:contains(currentURL, '/cs/emrContact') }">
+<c:if test="${fn:contains(currentURL, '/work/worker/main') or fn:contains(currentURL, '/board/noticeBoard') or fn:contains(currentURL, '/cs/emrContact')  or fn:contains(currentURL, '/board/videoBoard') }">
 	<div id="footers">	
 		<a href="/work/worker/main">
 			<div class="mn_wrap">
@@ -21,9 +21,8 @@
 				<div class="icon_mn"><img src="/assets/icon_mn03_notice.png" alt=""></div>
 				<div class="txt_mn">공지사항</div>
 			</div>
-		</a>
-		
-		<a href="/board/noticeBoard?Gubun=Notice">
+		</a>		
+		<a href="/board/videoBoard">
 			<div class="mn_wrap">
 				<div class="icon_mn"><img src="/assets/icon_mn04_10jjang.png" alt=""></div>
 				<div class="txt_mn">십짱TV</div>
