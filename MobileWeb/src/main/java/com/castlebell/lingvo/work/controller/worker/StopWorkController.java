@@ -155,7 +155,7 @@ public class StopWorkController extends CommonController{
         String workSeq = StringUtil.objectToString(request.getParameter("workSeq")); // 작업 순번
 
 
-        List<workIssueMsgListResponse> result = workService.RequestToEndTheWork("regist",userID,siteCode,issueGubun,location,reqReason,imgPaths,state,workSeq);
+        //List<workIssueMsgListResponse> result = workService.RequestToEndTheWork("regist",userID,siteCode,issueGubun,location,reqReason,imgPaths,state,workSeq);
         
 
         // 작업 중단 요청에 필요한 데이터 추출 및 처리 과정 (현재 로직에는 처리 로직이 구현되지 않았음)

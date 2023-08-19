@@ -49,7 +49,7 @@ public interface WorkService {
      * @param HashMap
      * @return
      */
-    List<workIssueMsgListResponse> RequestToEndTheWork(String gubun, String userID, String sitCode, String isuusuGubun, String location, String reqReason, String imgPaths,String state, String workSeq);
+    //List<workIssueMsgListResponse> RequestToEndTheWork(String gubun, String userID, String sitCode, String isuusuGubun, String location, String reqReason, String imgPaths,String state, String workSeq);
     
 
 }

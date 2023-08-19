@@ -44,6 +44,13 @@
         <div class="title">십짱TV</div>
         <div class="menu_more"><a href="javascript:openPop()"><img src="/assets/icon_list.png" alt="더보기"></a></div>	
       </div>
+    </c:when>  
+    <c:when test="${fn:contains(currentURL, 'cs/faq')}">
+      <div id="headers">
+        <div class="logo"><a href="javascript:history.back()"><img src="/assets/icon_arrow_back.png" alt="뒤로" ></a></div>
+        <div class="title">FAQ</div>
+        <div class="menu_more"><a href="javascript:openPop()"><img src="/assets/icon_list.png" alt="더보기"></a></div>	
+      </div>
     </c:when>
     <c:otherwise>
       <div id="headers">

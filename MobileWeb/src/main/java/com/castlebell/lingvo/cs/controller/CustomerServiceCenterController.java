@@ -54,5 +54,13 @@ public class CustomerServiceCenterController {
 		model.addAttribute("list", list);
 	    return "cs/emrContact";
 	}
-    
+
+    /**
+     * faq
+     * @return
+     */
+    @RequestMapping(value = "/faq", method=RequestMethod.GET)
+	public String faq(RedirectAttributes redirectAttributes) {
+        return "cs/faq";
+	}
 }

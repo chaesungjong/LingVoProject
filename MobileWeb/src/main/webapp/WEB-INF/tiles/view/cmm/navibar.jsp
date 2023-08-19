@@ -11,22 +11,21 @@
 	  </div>
       <!--팝업 컨텐츠 영역-->
       <div class="popup_cont">
-		<div class="tit_category">메인</div>
+		<div class="tit_category"><a href="/work/worker/main">메인</a></div>
 		<ul>
 			<li><a href='javascript:openQRCode("/work/worker/start/workQRConfirm");'>금일 작업 시작</a></li>
 			<li><a href="/work/worker/stop/requestStopWorkList">작업 중지 요청</a></li>
 			<li><a href="/work/worker/end/workReview">작업 후기</a></li>
-			<li><a href="/cs/emrContact">비상연락망</a></li>
-			<li><a href="/board/noticeBoard?Gubun=Notice">공지 사항</a></li>
+			<li><a href="/cs/emrContact">비상연락망</a></li>			
 			<li><a href="/board/videoBoard">십짱TV</a></li>
 		</ul>
-		<!--<div class="tit_category">고객센터</div>
+		<div class="tit_category">고객센터</div>
 		<ul>
-			<li><a href="#">공지사항</a></li>
-			<li><a href="/cs/customer_FAQ.html">FAQ</a></li>
-			<li><a href="#">고객센터 전화걸기</a></li>
+			<li><a href="/board/noticeBoard?Gubun=Notice">공지 사항</a></li>
+			<li><a href="/cs/faq">FAQ</a></li>
+			<li><a href="tel:02-1111-2222">고객센터 전화걸기</a></li>
 		</ul>
-		 <div class="tit_category">회원정보</div>
+		<!-- <div class="tit_category">회원정보</div>
 		<ul>
 			<li><a href="#">회원정보 수정</a></li>
 			<li><a href="#">생체 인증 로그인 설정</a></li>
