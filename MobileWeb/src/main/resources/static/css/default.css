@@ -186,6 +186,7 @@ legend {display:none}
 .login_wrap {width:100%; margin:25% 0 0; text-align:center}
 .login_wrap .logo img {width:26%; margin-bottom:25%}
 input[type="text"] { width:100%; border: 1px solid #BDBDBD; padding:20px; border-radius:8px; color:#333; font-size:1.1rem}
+input[type="password"] { width:100%; border: 1px solid #BDBDBD; padding:20px; border-radius:8px; color:#333; font-size:1.1rem}
 fieldset div {margin-bottom: 10px}
 .id_save {width:100%; display:flex; justify-content:center; align-items:center; margin-top:20px}
 .find_wrap {display:flex; justify-content:center; align-items:center; margin-top:30px}

@@ -7,7 +7,7 @@
         <div class="list">
           <div class="title"> 
             <c:choose>
-            <c:when test="${ board.importantYN == 'N'}">
+            <c:when test="${ board.importantYN == 'Y'}">
                 [<span>중요</span>]${board.title}</div>
             </c:when>
             <c:otherwise>
