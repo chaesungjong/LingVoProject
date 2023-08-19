@@ -1,0 +1,15 @@
+{
+    "configurations": [
+    
+        {
+            "type": "java",
+            "name": "Spring Boot-LingvoApplication<lingvo>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.castlebell.lingvo.LingvoApplication",
+            "projectName": "lingvo",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

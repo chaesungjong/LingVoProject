@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.castlebell.lingvo.mmb.dao.mmbMapper">
+  <!-- 로그인 시도 프로시저 Start -->
+  <select id="memLogin" statementType="CALLABLE">
+    { #{retVal, mode=OUT, jdbcType=INTEGER} = call [dbo].[memLogin](#{userid}, #{userpw}, #{ip}, #{clienttype},  #{errMsg, mode=OUT, jdbcType=VARCHAR} ) }
+  </select>
+  <!-- 로그인 시도 프로시저 End -->
+  <!-- 회원정보 가져오기 및 중복확인  프로시저 Start -->
+  <resultMap id="MemberResultMap" type="com.castlebell.lingvo.cmm.session.Member">
+    <result property="userid"           column="userid" />
+    <result property="userkey"          column="userkey" />
+    <result property="pwd"              column="pwd" />
+    <result property="name"             column="name" />
+    <result property="hpno"             column="hpno" />
+    <result property="emrHpno"          column="emrHpno" />
+    <result property="bloodType"        column="bloodType" />
+    <result property="foreignYn"        column="foreignYn" />
+    <result property="idImgUrl"         column="idImgUrl" />
+    <result property="state"            column="state" />
+    <result property="grade"            column="grade" />
+    <result property="requestTime"      column="requestTime" />
+    <result property="modifyTime"       column="modifyTime" />
+    <result property="modifyTime"       column="modifyTime" />
+    <result property="approvalTime"     column="approvalTime" />
+    <result property="approvaladminId"  column="approvaladminId" />
+  </resultMap>
+  <select id="memUserInfo" resultMap="MemberResultMap"  statementType="CALLABLE">
+        { call [dbo].[memUserInfo](
+            #{gubun},
+            #{userid},
+            #{ip},
+            #{userkey},
+            #{etcParam1},
+            #{etcParam2},
+            #{errMsg, mode=OUT, jdbcType=VARCHAR}
+        )
+    }
+  </select>
+  <!-- 회원정보 가져오기 및 중복확인 프로시저 End -->
+</mapper>

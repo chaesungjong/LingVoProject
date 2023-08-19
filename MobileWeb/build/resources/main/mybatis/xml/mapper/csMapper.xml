@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.castlebell.lingvo.cs.dao.csMapper">
+
+  <resultMap id="emergencyInfoListMap" type="com.castlebell.lingvo.cs.dao.domain.responese.EmergencyInfo">
+    <result property="siteCode" column="siteCode" />
+    <result property="name" column="name" />
+    <result property="hpno" column="hpno" />
+    <result property="companyName" column="companyName" />
+    <result property="state" column="state" />
+    <result property="systemtime" column="systemtime" />
+  </resultMap>
+  
+  <select id="getEmergencyInfoList" resultMap="emergencyInfoListMap" statementType="CALLABLE">
+    { call [dbo].[emergencyInfoList](
+      #{gubun},
+      #{siteCode},
+      #{etcparam}
+      )
+    }
+  </select>
+</mapper>

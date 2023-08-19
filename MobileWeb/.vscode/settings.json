@@ -1,0 +1,12 @@
+{
+    "files.autoGuessEncoding": true,
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "java.jdt.ls.java.home": "D:\\\\Open JDK\\\\jdk-17",
+    "java.configuration.runtimes": [],
+    "spring-boot.ls.java.home": "",
+    "java.import.gradle.java.home": "D:\\\\Open JDK\\\\jdk-17",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "interactive"
+}
