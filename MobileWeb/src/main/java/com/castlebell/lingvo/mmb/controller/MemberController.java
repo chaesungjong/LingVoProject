@@ -72,9 +72,15 @@ public class MemberController extends CommonController{
 		//로그인 처리 결과
 		String retVal = StringUtil.objectToString(resultMap.get("retVal"));
 		//로그인 실패
+		session.setAttribute("temp_userid", "");
 		if(!"0".equals(retVal)){
-			model.addAttribute("errMsg", StringUtil.objectToString(resultMap.get("errMsg")));
-			return "mmb/login";
+			if("-4".equals(retVal)){
+				session.setAttribute("temp_userid", userid);
+				return "redirect:/mmb/pwdInit";
+			}else{
+				model.addAttribute("errMsg", StringUtil.objectToString(resultMap.get("errMsg")));
+				return "mmb/login";
+			}
 		}
 		//회원 등급 확인
 		Member member = (Member) resultMap.get("member");
@@ -93,6 +99,64 @@ public class MemberController extends CommonController{
 			return "mmb/login";
 		}
 		
+	}
+
+	/**
+	 * 비밀번호 초기화
+	 * @return
+	 */
+    @RequestMapping(value = "/pwdInit", method=RequestMethod.GET)
+	public String pwdInit(HttpServletRequest request, 	Model model ,HttpSession session) {
+		String temp_userid = (String) session.getAttribute("temp_userid");
+		model.addAttribute("temp_userid", temp_userid);
+		//logger.info("temp_user:"+temp_userid);
+	    return "mmb/pwdInit";
+	}
+
+	
+	/*
+	 * 비밀번호 초기화 처리
+	 * @return
+	 */
+	@RequestMapping(value="/pwdInitProcess.do", method = {RequestMethod.POST})
+	public String pwdInitProcess(HttpServletRequest request, 	Model model ,HttpSession session) {
+ 
+		String retVal = "";
+		String retErrMsg = "";
+
+		String temp_userid    	= request.getParameter("temp_userid");		//아이디
+		String pwd        		= request.getParameter("pwd");				//비밀번호
+		String pwdNext       	= request.getParameter("pwdNext");			//변경할 비밀번호 
+		String pwdNextRe        = request.getParameter("pwdNextRe");		//변경할 비밀번호 확인
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+
+		if(StringUtil.isNull(pwd) || StringUtil.isNull(pwdNext) || StringUtil.isNull(pwdNextRe)) {
+			model.addAttribute("errMsg", "비밀번호를 입력해주세요.");
+			return "mmb/pwdInit";
+		}
+
+		String session_temp_userid = (String) session.getAttribute("temp_userid");	
+		if(!session_temp_userid.equals(temp_userid)){
+			model.addAttribute("errMsg", "try login again!");
+			session.setAttribute("temp_userid", "");
+			return "mmb/login";
+		}
+
+		resultMap = memberService.pwdInitProcess(request, temp_userid, pwd, pwdNext);
+
+		Member member = (Member) resultMap.get("member");
+		if(member != null) {
+			retVal = StringUtil.objectToString(member.getRetVal());
+			retErrMsg = StringUtil.objectToString(member.getErrMsg());
+		}
+
+		session.setAttribute("temp_userid", "");
+
+		//if(!"0".equals(retVal)){
+			model.addAttribute("errMsg", retErrMsg);	
+		//}	
+		return "mmb/login";
+			
 	}
 
 }

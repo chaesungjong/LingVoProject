@@ -52,6 +52,13 @@
         <div class="menu_more"><a href="javascript:openPop()"><img src="/assets/icon_list.png" alt="더보기"></a></div>	
       </div>
     </c:when>
+    <c:when test="${fn:contains(currentURL, 'mmb/pwdInit')}">
+      <div id="headers">
+        <div class="logo"></div>
+        <div class="title">비밀번호 재설정</div>
+        <div class="menu_more"></div>	
+      </div>
+    </c:when>
     <c:otherwise>
       <div id="headers">
         <div class="logo"><a href="/work/worker/main"><img src="/assets/logo.png" alt="링보" ></a></div>
