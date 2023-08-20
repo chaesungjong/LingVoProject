@@ -1,2 +1,6 @@
 
 LingVoMobile/
+.history/
+*.class
+*.log
+*.class
