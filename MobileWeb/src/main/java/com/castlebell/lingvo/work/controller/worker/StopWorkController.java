@@ -130,40 +130,51 @@ public class StopWorkController extends CommonController{
     }
 
     /**
-     * 작업 중단 요청을 완료하고 그 결과를 사용자에게 보여준다.
+     * 작업 중단 요청을 처리하고 그 결과를 사용자에게 반환합니다.
+     *
      * @return 페이지 뷰 이름
      */
-    @RequestMapping(value = "/requestPictureComfirm", method=RequestMethod.POST)
-    public String requestPictureComfirm(HttpServletRequest request, Model model ,HttpSession session, RedirectAttributes redirectAttributes) {
-        logger.debug("requestPictureComfirm 진입");
+    @RequestMapping(value = "/requestPictureComfirm", method = RequestMethod.POST)
+    public String requestPictureComfirm(HttpServletRequest request, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+        
+        // 로그 진입을 알리는 메시지
+        logger.info("requestPictureComfirm 진입");
 
-        // 로그인 확인
-        if(!checkLogin(session, redirectAttributes)){ 
-            return "redirect:/mmb/login"; 
+        // 로그인 상태 확인
+        if (!checkLogin(session, redirectAttributes)) {
+            return "redirect:/mmb/login";
         }
 
+        // 세션에서 안전 검사와 회원 정보 추출
         WorkSafetyCheck workSafetyCheck = (WorkSafetyCheck) session.getAttribute("WorkSafetyCheck");
         Member member = (Member) session.getAttribute("member");
 
-        String userID = member.getUserid(); // 사용자 ID
-        String siteCode = member.getsiteCode(); // 현장 코드
-        String issueGubun = StringUtil.objectToString(request.getParameter("issueGubun")); // 이슈 구분
-        String location = StringUtil.objectToString(request.getParameter("location")); // 현장 위치
-        String reqReason = StringUtil.objectToString(request.getParameter("reqReason")); // 요청 사유
-        String imgPaths = StringUtil.objectToString(request.getParameter("imgPaths")); // 사진 경로
-        String ip = request.getRemoteAddr(); // 접속자 IP
-        String workSeq = StringUtil.objectToString(workSafetyCheck.getWorkSeq()); // 작업 순번
+        // 작업 중단 요청 정보 객체 초기화 및 설정
+        WorkStopReqModify workStopReqModify = new WorkStopReqModify();
+        workStopReqModify.setGubun("regist");
+        workStopReqModify.setUserid(StringUtil.objectToString(member.getUserid()));
+        workStopReqModify.setSiteCode(StringUtil.objectToString(member.getsiteCode()));
+        workStopReqModify.setIssueGubun(StringUtil.objectToString(request.getParameter("issueGubun")));
+        workStopReqModify.setLocation(StringUtil.objectToString(request.getParameter("location")));
+        workStopReqModify.setReqReason(StringUtil.objectToString(request.getParameter("reqReason")));
+        workStopReqModify.setImgPaths(StringUtil.objectToString(request.getParameter("imgPaths")));
+        workStopReqModify.setState("Y");
+        workStopReqModify.setIp(StringUtil.objectToString(request.getRemoteAddr()));
+        workStopReqModify.setWsrSeq(StringUtil.objectToString(workSafetyCheck.getWorkSeq()));
 
-        WorkStopReqModify result = workService.workStopReqModify("regist",userID,siteCode,issueGubun,location,reqReason,imgPaths,"Y",ip,workSeq);
+        // 작업 중단 요청 정보를 서비스로 전달 및 처리
+        workService.workStopReqModify(workStopReqModify);
 
-        if(result != null){
-            String errMsg = result.getErrMsg();
-            if(result.getRetVal() == 0){
+        // 처리 결과에 따른 메시지 설정
+        if (workStopReqModify != null) {
+            String errMsg = workStopReqModify.getErrMsg();
+            if (workStopReqModify.getRetVal() == 0) {
                 errMsg = "관리자가 빠른 시간내에<br>현장을 조치 하도록 하겠습니다.<br> 안전 조치가 완료될때까지<br>작업을 대기하시길 바랍니다.";
             }
             model.addAttribute("Msg", errMsg);
         }
-        
+
+        // 뷰 페이지로 리다이렉트
         return StopWorkMapping + "/requestPictureComfirm";
     }
 }

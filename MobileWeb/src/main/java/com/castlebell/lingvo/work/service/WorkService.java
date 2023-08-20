@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import com.castlebell.lingvo.cmm.session.WorkSafetyCheck;
 import com.castlebell.lingvo.work.dao.domain.request.WorkClassMsgListRequest;
+import com.castlebell.lingvo.work.dao.domain.request.WorkReviewModify;
 import com.castlebell.lingvo.work.dao.domain.request.WorkStopReqModify;
 import com.castlebell.lingvo.work.dao.domain.response.WorkClassMsgListResponse;
 import com.castlebell.lingvo.work.dao.domain.response.workIssueMsgListResponse;
@@ -47,10 +48,17 @@ public interface WorkService {
 
     /**
      * 작업 중지 요청
-     * @param HashMap
+     * @param WorkStopReqModify
      * @return
      */
-    WorkStopReqModify workStopReqModify(String gubun, String userID, String sitCode, String isuusuGubun, String location, String reqReason, String imgPaths,String state,String ip, String workSeq);
+    WorkStopReqModify workStopReqModify(WorkStopReqModify WorkStopReqModify);
+
+    /**
+     * 작업 개선 요청 등록/수정
+     * @param workReviewModify
+     * @return
+     */
+    WorkReviewModify workReviewModify(WorkReviewModify workReviewModify);
     
 
 }

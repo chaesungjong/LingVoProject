@@ -43,9 +43,12 @@ function workReviewEndPicturePlus(){
 
     // 사용자 체크한 것을 로컬스토리지에 저장
     localStorage.setItem("issuesList", checkedValues);
-
-    alert("개선이 필요한 부분의 사진을 등록해주세요. ");
-    location.href = "/work/worker/end/workReviewEndPicturePlus";    
+    // 다음 작업 단계 함수 설정
+    var nextStep = function() { location.href = "/work/worker/end/workReviewEndPicturePlus"; }; 
+    // 알림 메시지 텍스트 설정
+    var alertMessage = "개선이 필요한 부분의 사진을 등록해주세요. ";
+    // 사용자에게 알림 팝업 표시
+    openAlert(alertMessage, nextStep);
 }
 
 function sendWorkReview(issues){

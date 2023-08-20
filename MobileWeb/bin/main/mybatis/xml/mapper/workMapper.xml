@@ -84,10 +84,17 @@
   </select>
   <!-- 작업중지 상황별 메시지 리스트 End -->
 
-    <!-- 작업중지요청 등록/수정 프로시저 호출 -->
-<select id="workStopReqModify" statementType="CALLABLE">
-    { #{retVal, mode=OUT, jdbcType=INTEGER} = call [dbo].[workStopReqModify](#{gubun}, #{userid}, #{siteCode}, #{issueGubun}, #{location}, 
-                                    #{reqReason}, #{imgPaths}, #{state}, #{ip}, #{wsrSeq}, 
-                                    #{errMsg, mode=OUT, jdbcType=VARCHAR}) }
-</select>
+  <!-- 작업중지요청 등록/수정 프로시저 호출 -->
+  <select id="workStopReqModify" statementType="CALLABLE">
+      { #{retVal, mode=OUT, jdbcType=INTEGER} = call [dbo].[workStopReqModify](#{gubun}, #{userid}, #{siteCode}, #{issueGubun}, #{location}, 
+                                      #{reqReason}, #{imgPaths}, #{state}, #{ip}, #{wsrSeq}, 
+                                      #{errMsg, mode=OUT, jdbcType=VARCHAR}) }
+  </select>
+
+  <!-- 작업 개선 요청 등록/수정 프로시저 호출 -->
+  <select id="workReviewModify" statementType="CALLABLE">
+      { #{retVal, mode=OUT, jdbcType=INTEGER} = call [dbo].[workReviewModify](#{gubun}, #{userid}, #{siteCode}, #{reviewClass}, #{reviewGubun}, 
+                                      #{location}, #{content}, #{imgPaths}, #{state}, #{ip}, #{wrSeq}, 
+                                      #{errMsg, mode=OUT, jdbcType=VARCHAR}) }
+  </select>
 </mapper>

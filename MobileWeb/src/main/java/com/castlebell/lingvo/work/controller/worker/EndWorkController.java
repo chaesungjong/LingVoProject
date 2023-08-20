@@ -16,6 +16,7 @@ import com.castlebell.lingvo.cmm.CommonController;
 import com.castlebell.lingvo.cmm.session.Member;
 import com.castlebell.lingvo.cmm.session.WorkSafetyCheck;
 import com.castlebell.lingvo.util.StringUtil;
+import com.castlebell.lingvo.work.dao.domain.request.WorkReviewModify;
 import com.castlebell.lingvo.work.dao.domain.request.WorkStopReqModify;
 import com.castlebell.lingvo.work.dao.domain.response.workIssueMsgListResponse;
 import com.castlebell.lingvo.work.service.WorkService;
@@ -149,38 +150,50 @@ public class EndWorkController extends CommonController {
 	    return EndWorkMapping + "/workReviewEndPicturePlusDitail";
 	}
 
-    /**
-	 * 작업 중지 요청 완료 처리
+	/**
+	 * 작업 중지 후의 리뷰 요청 처리
 	 * @return 페이지 경로
 	 */
-    @RequestMapping(value = "/sendWorkReview", method=RequestMethod.POST)
+	@RequestMapping(value = "/sendWorkReview", method = RequestMethod.POST)
 	public String sendWorkReview(HttpServletRequest request, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
-
-		if(!checkLogin(session, redirectAttributes)) { return "/mmb/login"; }
 		
-        WorkSafetyCheck workSafetyCheck = (WorkSafetyCheck) session.getAttribute("WorkSafetyCheck");
-        Member member = (Member) session.getAttribute("member");
+		// 로그인 상태 확인
+		if (!checkLogin(session, redirectAttributes)) {
+			return "/mmb/login";
+		}
 
-        String userID = member.getUserid(); // 사용자 ID
-        String siteCode = member.getsiteCode(); // 현장 코드
-        String issueGubun = StringUtil.objectToString(request.getParameter("issueGubun")); // 이슈 구분
-        String location = StringUtil.objectToString(request.getParameter("location")); // 현장 위치
-        String reqReason = StringUtil.objectToString(request.getParameter("reqReason")); // 요청 사유
-        String imgPaths = StringUtil.objectToString(request.getParameter("imgPaths")); // 사진 경로
-        String ip = request.getRemoteAddr(); // 접속자 IP
-        String workSeq = StringUtil.objectToString(workSafetyCheck.getWorkSeq()); // 작업 순번
+		// 세션에서 회원 정보와 안전 검사 정보 추출
+		Member member = (Member) session.getAttribute("member");
+		WorkSafetyCheck workSafetyCheck = (WorkSafetyCheck) session.getAttribute("WorkSafetyCheck");
 
-        WorkStopReqModify result = workService.workStopReqModify("regist",userID,siteCode,issueGubun,location,reqReason,imgPaths,"Y",ip,workSeq);
+		// 리뷰 수정 정보 객체 초기화 및 설정
+		WorkReviewModify workReviewModify = new WorkReviewModify();
+		workReviewModify.setGubun("regist");
+		workReviewModify.setUserid(StringUtil.objectToString(member.getUserid()));
+		workReviewModify.setSiteCode(StringUtil.objectToString(member.getsiteCode()));
+		workReviewModify.setReviewClass("NO");
+		workReviewModify.setReviewGubun(StringUtil.objectToString(request.getParameter("issueGubun")));
+		workReviewModify.setLocation(StringUtil.objectToString(request.getParameter("location")));
+		workReviewModify.setContent(StringUtil.objectToString(request.getParameter("reqReason")));
+		workReviewModify.setImgPaths(StringUtil.objectToString(request.getParameter("imgPaths")));
+		workReviewModify.setState("Y");
+		workReviewModify.setIp(StringUtil.objectToString(request.getRemoteAddr()));
+		workReviewModify.setWrSeq(StringUtil.objectToString(workSafetyCheck.getWorkSeq()));
 
-        if(result != null){
-            String errMsg = result.getErrMsg();
-            if(result.getRetVal() == 0){
-                errMsg = "감사합니다.<br/>개선 요청 사항이<br/>등록되었습니다.<br/>현장 확인 후<br/><span class='txt_point'>즉시 조치하도록 하겠습니다.</span>";
-            }
-            model.addAttribute("Msg", errMsg);
-        }
+		// 리뷰 수정 정보를 서비스로 전달 및 처리
+		workService.workReviewModify(workReviewModify);
+
+		// 처리 결과에 따른 메시지 설정
+		if (workReviewModify != null) {
+			String errMsg = workReviewModify.getErrMsg();
+			if (workReviewModify.getRetVal() == 0) {
+				errMsg = "감사합니다.<br/>개선 요청 사항이<br/>등록되었습니다.<br/>현장 확인 후<br/><span class='txt_point'>즉시 조치하도록 하겠습니다.</span>";
+			}
+			model.addAttribute("Msg", errMsg);
+		}
 		
-	    return EndWorkMapping + "/sendWorkReview";
+		// 결과 페이지로 리다이렉트
+		return EndWorkMapping + "/sendWorkReview";
 	}
 
 }

@@ -30,7 +30,7 @@ $(document).ready(function() {
     }else if('WR_RISKMNG' == issueCode){
         $('#field').show();
         $('#userid').show();
-        $('#location').show();
+        $('#locationDiv').show();
         $('#picture').show();
     } else if('WR_ETC' == issueCode){
         $('#field').show();
@@ -42,7 +42,7 @@ $(document).ready(function() {
     $("#next").click(function() {
         
         if(issueCode == 'WR_ETC'){
-            $("#issueList").val($('#requestcontent').val());
+            $("#reqReason").val($('#requestcontent').val());
         }
          $('#Comfirm').submit();
     });

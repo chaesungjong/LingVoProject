@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.castlebell.lingvo.cmm.session.WorkSafetyCheck;
 import com.castlebell.lingvo.work.dao.domain.request.WorkClassMsgListRequest;
+import com.castlebell.lingvo.work.dao.domain.request.WorkReviewModify;
 import com.castlebell.lingvo.work.dao.domain.request.WorkStopReqModify;
 import com.castlebell.lingvo.work.dao.domain.response.WorkClassMsgListResponse;
 import com.castlebell.lingvo.work.dao.domain.response.workIssueMsgListResponse;
@@ -46,5 +47,11 @@ public interface WorkMapper {
      * 작업중지 상황별 메시지 리스트
      * @return
      */
-    WorkStopReqModify workStopReqModify(WorkStopReqModify map);
+    void workStopReqModify(WorkStopReqModify workStopReqModify);
+
+        /**
+     * 작업중지 상황별 메시지 리스트
+     * @return
+     */
+    void workReviewModify(WorkReviewModify workReviewModify);
 }

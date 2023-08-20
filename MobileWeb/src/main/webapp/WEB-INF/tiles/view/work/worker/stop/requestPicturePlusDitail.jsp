@@ -2,18 +2,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div id="container">		
   <div class="today_wrap mt30">			
-    <div class="today_info" id="location" style="display: none;">
+    <div class="today_info" id="locationDiv" style="display: none;">
       <div class="today_th">위치</div>
       <div class="today_td">${location}</div>
     </div>
-    <div class="today_info" id="constName" style="display: none;">
-      <div class="today_th">시공사</div>
-      <div class="today_td">${constName}</div>
-    </div>		
     <div class="today_info" id="field" style="display: none;">
       <div class="today_th">현장</div>
       <div class="today_td">${siteName}</div>
     </div>
+    <div class="today_info" id="constName" style="display: none;">
+      <div class="today_th">시공사</div>
+      <div class="today_td">${constName}</div>
+    </div>	
     <div class="today_info" id="userid" style="display: none;">
       <div class="today_th">요청자</div>
       <div class="today_td">${name}</div>
@@ -31,8 +31,9 @@
   </div>	
 </div>
 <form id="Comfirm" action= "/work/worker/stop/requestPictureComfirm" method="post">
-  <input type="hidden" id="imgPaths"  name="imgPaths">
-  <input type="hidden" id="reqReason" name="reqReason">
+  <input type="hidden" id="imgPaths"   name="imgPaths">
+  <input type="hidden" id="reqReason"  name="reqReason">
   <input type="hidden" id="issueGubun" name="issueGubun">
+  <input type="hidden" id="location"   name="location" value="${location}">
 </form>
 <script src="/js/work/worker/stop/requestPicturePlusDitail.js"></script>
