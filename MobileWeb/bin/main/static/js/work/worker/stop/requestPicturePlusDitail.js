@@ -3,11 +3,12 @@ $(document).ready(function() {
     var issue = localStorage.getItem("issue");
     var issuesList = localStorage.getItem("issuesList");
     var issuesImageList = localStorage.getItem("issuesImageList");
+    var issueCode = localStorage.getItem("issueCode");
 
     // 가져온 값들을 각각의 HTML 요소에 할당
-    $("#issue").val(issue);
-    $("#issuesList").val(issuesList);
-    $("#imageList").val(issuesImageList);
+    $("#issueGubun").val(issue);
+    $("#reqReason").val(issuesList);
+    $("#imgPaths").val(issuesImageList);
     $("#requestWork").text(issue);
 
     // 문제 리스트와 이미지 리스트를 배열로 변환
@@ -23,8 +24,6 @@ $(document).ready(function() {
     issuesListArray.forEach(function(issueItem) {
         $("#requestWork").append("<br>" + issueItem);
     });
-
-    var issueCode = localStorage.getItem("issueCode");
 
     // 문제 코드에 따른 UI 조정
     if (issueCode === 'WS_FACILIT') {

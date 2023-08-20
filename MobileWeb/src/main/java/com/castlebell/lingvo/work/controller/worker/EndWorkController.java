@@ -16,6 +16,7 @@ import com.castlebell.lingvo.cmm.CommonController;
 import com.castlebell.lingvo.cmm.session.Member;
 import com.castlebell.lingvo.cmm.session.WorkSafetyCheck;
 import com.castlebell.lingvo.util.StringUtil;
+import com.castlebell.lingvo.work.dao.domain.request.WorkStopReqModify;
 import com.castlebell.lingvo.work.dao.domain.response.workIssueMsgListResponse;
 import com.castlebell.lingvo.work.service.WorkService;
 
@@ -154,25 +155,31 @@ public class EndWorkController extends CommonController {
 	 */
     @RequestMapping(value = "/sendWorkReview", method=RequestMethod.POST)
 	public String sendWorkReview(HttpServletRequest request, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+
 		if(!checkLogin(session, redirectAttributes)) { return "/mmb/login"; }
-		Member member = (Member) session.getAttribute("member");
-		String workIdx = StringUtil.objectToString(request.getParameter("workIdx"));
-		String siteName = StringUtil.objectToString(request.getParameter("siteName"));
-		String issueGubun = StringUtil.objectToString(request.getParameter("issueGubun"));
-		String etc = StringUtil.objectToString(request.getParameter("etc"));
+		
+        WorkSafetyCheck workSafetyCheck = (WorkSafetyCheck) session.getAttribute("WorkSafetyCheck");
+        Member member = (Member) session.getAttribute("member");
 
-		HashMap<String, String> map = new HashMap<>();
-		map.put("workIdx", workIdx);
-		map.put("siteName", siteName);
-		map.put("issueGubun", issueGubun);
-		map.put("etc", etc);
+        String userID = member.getUserid(); // 사용자 ID
+        String siteCode = member.getsiteCode(); // 현장 코드
+        String issueGubun = StringUtil.objectToString(request.getParameter("issueGubun")); // 이슈 구분
+        String location = StringUtil.objectToString(request.getParameter("location")); // 현장 위치
+        String reqReason = StringUtil.objectToString(request.getParameter("reqReason")); // 요청 사유
+        String imgPaths = StringUtil.objectToString(request.getParameter("imgPaths")); // 사진 경로
+        String ip = request.getRemoteAddr(); // 접속자 IP
+        String workSeq = StringUtil.objectToString(workSafetyCheck.getWorkSeq()); // 작업 순번
 
-		// //DB에서 해당 작업 중지 요청 정보 저장
-		// boolean isSuccess = workService.sendWorkReview(member, map);
-		// if(!isSuccess) {
-		// 	redirectAttributes.addAttribute("errMsg", "요청 처리 중 오류가 발생했습니다.");
-		// 	return "redirect:/work/worker/main";
-		// }
+        WorkStopReqModify result = workService.workStopReqModify("regist",userID,siteCode,issueGubun,location,reqReason,imgPaths,"Y",ip,workSeq);
+
+        if(result != null){
+            String errMsg = result.getErrMsg();
+            if(result.getRetVal() == 0){
+                errMsg = "감사합니다.<br/>개선 요청 사항이<br/>등록되었습니다.<br/>현장 확인 후<br/><span class='txt_point'>즉시 조치하도록 하겠습니다.</span>";
+            }
+            model.addAttribute("Msg", errMsg);
+        }
+		
 	    return EndWorkMapping + "/sendWorkReview";
 	}
 

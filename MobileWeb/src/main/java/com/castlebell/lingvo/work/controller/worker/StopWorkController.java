@@ -17,6 +17,7 @@ import com.castlebell.lingvo.cmm.CommonController;
 import com.castlebell.lingvo.cmm.session.Member;
 import com.castlebell.lingvo.cmm.session.WorkSafetyCheck;
 import com.castlebell.lingvo.util.StringUtil;
+import com.castlebell.lingvo.work.dao.domain.request.WorkStopReqModify;
 import com.castlebell.lingvo.work.dao.domain.response.workIssueMsgListResponse;
 import com.castlebell.lingvo.work.service.WorkService;
 
@@ -150,16 +151,19 @@ public class StopWorkController extends CommonController{
         String location = StringUtil.objectToString(request.getParameter("location")); // 현장 위치
         String reqReason = StringUtil.objectToString(request.getParameter("reqReason")); // 요청 사유
         String imgPaths = StringUtil.objectToString(request.getParameter("imgPaths")); // 사진 경로
-        String state = StringUtil.objectToString(request.getParameter("state")); // 상태
         String ip = request.getRemoteAddr(); // 접속자 IP
-        String workSeq = StringUtil.objectToString(request.getParameter("workSeq")); // 작업 순번
+        String workSeq = StringUtil.objectToString(workSafetyCheck.getWorkSeq()); // 작업 순번
 
+        WorkStopReqModify result = workService.workStopReqModify("regist",userID,siteCode,issueGubun,location,reqReason,imgPaths,"Y",ip,workSeq);
 
-        //List<workIssueMsgListResponse> result = workService.RequestToEndTheWork("regist",userID,siteCode,issueGubun,location,reqReason,imgPaths,state,workSeq);
+        if(result != null){
+            String errMsg = result.getErrMsg();
+            if(result.getRetVal() == 0){
+                errMsg = "관리자가 빠른 시간내에<br>현장을 조치 하도록 하겠습니다.<br> 안전 조치가 완료될때까지<br>작업을 대기하시길 바랍니다.";
+            }
+            model.addAttribute("Msg", errMsg);
+        }
         
-
-        // 작업 중단 요청에 필요한 데이터 추출 및 처리 과정 (현재 로직에는 처리 로직이 구현되지 않았음)
-
         return StopWorkMapping + "/requestPictureComfirm";
     }
 }

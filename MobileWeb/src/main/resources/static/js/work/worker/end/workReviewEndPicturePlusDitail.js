@@ -1,10 +1,15 @@
 $(document).ready(function() {
 
-    $("#issue").val(localStorage.getItem("issue"));
-    $("#issuesList").val(localStorage.getItem("issuesList"));
-    $("#imageList").val(localStorage.getItem("issuesImageList"));
+    var issue = localStorage.getItem("issue");
+    var issuesList = localStorage.getItem("issuesList");
+    var issuesImageList = localStorage.getItem("issuesImageList");
+    var issueCode = localStorage.getItem("issueCode");
 
-    $("#requestWork").text($("#issue").val());
+    // 가져온 값들을 각각의 HTML 요소에 할당
+    $("#issueGubun").val(issueCode);
+    $("#reqReason").val(issuesList);
+    $("#imgPaths").val(issuesImageList);
+    $("#requestWork").text(issue);
 
     var issuesListArray = $("#issuesList").val() ?  $("#issuesList").val().split(",") : [];
     var imageListArray = $("#imageList").val() ? $("#imageList").val().split(",") : [];
@@ -16,8 +21,6 @@ $(document).ready(function() {
     for(var i = 0; i < issuesListArray.length; i++) {
         $("#requestWork").append("<br>" + issuesListArray[i]);
     }
-    
-    var issueCode = localStorage.getItem("issueCode");
 
     if('WR_FACILIT' == issueCode){
         $('#field').show();

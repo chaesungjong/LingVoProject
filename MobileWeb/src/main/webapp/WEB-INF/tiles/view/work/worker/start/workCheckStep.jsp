@@ -13,7 +13,7 @@
         <div><img src="/assets/img_noti_bottom.png" alt=""></div>
     </div>
     <div class="btn_strock mt30">
-        <a id="next" href="#" class="btn_ok_s">확인</a>
+        <a id="next" href="#" class="btn_ok_stop">확인</a>
     </div>
 </div>
 <script src="/js/work/worker/start/workCheckStep.js"></script>

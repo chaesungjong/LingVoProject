@@ -23,10 +23,8 @@ $(document).ready(function() {
 
   // "다음" 버튼에 클릭 이벤트 리스너 추가
   $("#next").click(function() {
-      if (!isLinkDisabled) {
-          return;
-      }
-      isLinkDisabled = false; // 버튼 클릭을 임시로 비활성화
+
+      if (!isLinkDisabled) return; // 버튼이 비활성화 상태라면 클릭 이벤트를 무시
       $("#next").removeClass("btn_ok_s").addClass("btn_ok_stop");
 
       countClick++;
@@ -41,12 +39,6 @@ $(document).ready(function() {
            openAlert(alertMessage, nextStep);
            return;
       }
-
-      // 2초 후 버튼을 다시 활성화
-      setTimeout(() => {
-          $("#next").removeClass("btn_ok_stop").addClass("btn_ok_s");
-          isLinkDisabled = true; // 버튼 활성화
-      }, 500);
   });
 
   // 주어진 패턴으로 텍스트에서 값을 추출
@@ -57,9 +49,15 @@ $(document).ready(function() {
 
 // UI를 업데이트하는 함수
 function updateUI(item) {
+  isLinkDisabled = false; // 버튼 클릭을 임시로 비활성화
   $("#click").text(item.step);
   $("#total").text(item.stepTotal);
   typeAnimation($("#title"), item.message);
+    // 2초 후 버튼을 다시 활성화
+    setTimeout(() => {
+      $("#next").removeClass("btn_ok_stop").addClass("btn_ok_s");
+      isLinkDisabled = true; // 버튼 활성화
+  }, 500);
 }
 
 /**

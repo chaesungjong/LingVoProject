@@ -30,3 +30,12 @@
 		</a>
 	</div>
 </c:if>
+<div class="popup_Alert" id="popup_Alert">
+	<div class="popup_cont_wrap">
+		<div class="pop_cont" id="popup_message"></div>
+		<div class="popBtn_wrap">
+			<div><a href="#" id="popup_cancel" class="btn_cancel">취소</a></div>
+			<div><a href="#" id="popup_ok"     class="btn_ok">확인</a></div>
+		</div>
+	</div>
+</div>

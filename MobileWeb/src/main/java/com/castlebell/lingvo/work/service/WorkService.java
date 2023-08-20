@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import com.castlebell.lingvo.cmm.session.WorkSafetyCheck;
 import com.castlebell.lingvo.work.dao.domain.request.WorkClassMsgListRequest;
+import com.castlebell.lingvo.work.dao.domain.request.WorkStopReqModify;
 import com.castlebell.lingvo.work.dao.domain.response.WorkClassMsgListResponse;
 import com.castlebell.lingvo.work.dao.domain.response.workIssueMsgListResponse;
 
@@ -49,7 +50,7 @@ public interface WorkService {
      * @param HashMap
      * @return
      */
-    //List<workIssueMsgListResponse> RequestToEndTheWork(String gubun, String userID, String sitCode, String isuusuGubun, String location, String reqReason, String imgPaths,String state, String workSeq);
+    WorkStopReqModify workStopReqModify(String gubun, String userID, String sitCode, String isuusuGubun, String location, String reqReason, String imgPaths,String state,String ip, String workSeq);
     
 
 }

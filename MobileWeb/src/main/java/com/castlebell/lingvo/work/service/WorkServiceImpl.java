@@ -12,6 +12,7 @@ import com.castlebell.lingvo.cmm.session.Member;
 import com.castlebell.lingvo.cmm.session.WorkSafetyCheck;
 import com.castlebell.lingvo.work.dao.WorkMapper;
 import com.castlebell.lingvo.work.dao.domain.request.WorkClassMsgListRequest;
+import com.castlebell.lingvo.work.dao.domain.request.WorkStopReqModify;
 import com.castlebell.lingvo.work.dao.domain.response.WorkClassMsgListResponse;
 import com.castlebell.lingvo.work.dao.domain.response.workIssueMsgListResponse;
 
@@ -112,9 +113,21 @@ public class WorkServiceImpl implements WorkService{
      * @param map 요청 파라미터 맵
      * @return 작업 이슈 메시지 응답 목록
      */
-    // @Override
-    // public List<workIssueMsgListResponse> RequestToEndTheWork(String gubun, String userID, String sitCode, String isuusuGubun, String location, String reqReason, String imgPaths,String state, String workSeq) {
+    @Override
+    public WorkStopReqModify workStopReqModify(String gubun, String userID, String sitCode, String isuusuGubun, String location, String reqReason, String imgPaths,String state,String ip, String workSeq) {
 
-    //     //return workMapper.getWorkIssueMsgList(map);
-    // }
+        WorkStopReqModify workStopReqModify = new WorkStopReqModify();
+        workStopReqModify.setGubun(gubun);
+        workStopReqModify.setUserid(userID);
+        workStopReqModify.setSiteCode(sitCode);
+        workStopReqModify.setIssueGubun(isuusuGubun);
+        workStopReqModify.setLocation(location);
+        workStopReqModify.setReqReason(reqReason);
+        workStopReqModify.setImgPaths(imgPaths);
+        workStopReqModify.setState(state);
+        workStopReqModify.setIp(ip);
+        workStopReqModify.setWsrSeq(workSeq);
+        workMapper.workStopReqModify(workStopReqModify);
+        return workStopReqModify;
+    }
 }

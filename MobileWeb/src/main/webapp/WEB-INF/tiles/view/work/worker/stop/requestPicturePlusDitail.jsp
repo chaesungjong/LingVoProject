@@ -31,8 +31,8 @@
   </div>	
 </div>
 <form id="Comfirm" action= "/work/worker/stop/requestPictureComfirm" method="post">
-  <input type="hidden" id="imageList"  name="imageList">
-  <input type="hidden" id="issuesList" name="issuesList">
-  <input type="hidden" id="issue" name="issue">
+  <input type="hidden" id="imgPaths"  name="imgPaths">
+  <input type="hidden" id="reqReason" name="reqReason">
+  <input type="hidden" id="issueGubun" name="issueGubun">
 </form>
 <script src="/js/work/worker/stop/requestPicturePlusDitail.js"></script>
