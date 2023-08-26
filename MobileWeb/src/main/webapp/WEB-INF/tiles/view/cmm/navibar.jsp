@@ -6,8 +6,8 @@
 		<div class="pop_close"><a href="javascript:closePop();"><img src="/assets/icon_close.png" class="m_header-banner-close" ></a></div>
 	  </div>
 	  <div class="pop_date_wrap">
-		<!-- <div class="date">[최근 접속일] 2023.07.20 16:40:10</div> 
-		<div class="logout"><a href="/login/login.html">로그아웃</a></div>-->
+		<!-- <div class="date">[최근 접속일] 2023.07.20 16:40:10</div> -->
+		<div class="logout"><a href="javascript:logOut();">로그아웃</a></div>
 	  </div>
       <!--팝업 컨텐츠 영역-->
       <div class="popup_cont">

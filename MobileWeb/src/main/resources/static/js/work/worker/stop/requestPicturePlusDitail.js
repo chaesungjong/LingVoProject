@@ -6,7 +6,7 @@ $(document).ready(function() {
     var issueCode = localStorage.getItem("issueCode");
 
     // 가져온 값들을 각각의 HTML 요소에 할당
-    $("#issueGubun").val(issue);
+    $("#issueGubun").val(issueCode);
     $("#reqReason").val(issuesList);
     $("#imgPaths").val(issuesImageList);
     $("#requestWork").text(issue);

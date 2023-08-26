@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.castlebell.lingvo.cmm.session.Member" %>
+<%@ page import="com.castlebell.lingvo.mmb.dao.domain.request.RequestLogin" %>
 
 <!-- 외부 스크립트 및 리소스 연결 -->
 <script src="/js/include/html_meta.js"></script>
@@ -13,8 +14,10 @@
 <%  
     // 세션에서 사용자 정보 가져오기
     Member member = (Member) session.getAttribute("member");
+    RequestLogin autoLogin = (RequestLogin) session.getAttribute("autoLogin");
     String userName = (member != null) ? member.getName() : "";
     String userid = (member != null) ? member.getUserid() : "";
+    String userPw = (autoLogin != null) ? autoLogin.getUserpw() : "";
 %>
 
 <script>
@@ -27,6 +30,7 @@
     // 사용자 이름과 아이디 변수 선언
     var userName = '<%= userName %>';
     var userid = '<%= userid %>';
+    var userName     = '<%= userName %>';
 </script>
 
 <!-- 주요 콘텐츠 영역 -->

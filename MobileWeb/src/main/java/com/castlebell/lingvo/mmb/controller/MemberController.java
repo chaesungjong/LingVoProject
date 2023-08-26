@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.castlebell.lingvo.cmm.CommonController;
 import com.castlebell.lingvo.cmm.session.Member;
 import com.castlebell.lingvo.mmb.dao.domain.request.RequestLogin;
@@ -41,20 +42,26 @@ public class MemberController extends CommonController{
 	    return "mmb/login";
 	}
 
-	/*
-	 * 로그인 처리
-	 * @return
+	/**
+	 * 사용자 로그인 처리를 위한 컨트롤러 메서드.
+	 *
+	 * @param request 사용자의 로그인 요청 정보
+	 * @param model 화면에 전달할 모델
+	 * @param session 현재 세션
+	 * @param redirectAttributes 리다이렉트 시 전달할 속성
+	 * @return 로그인 처리 후 이동할 페이지 경로
 	 */
-	@RequestMapping(value="/loginProcess.do", method = {RequestMethod.POST})
-	public String loginProcess(HttpServletRequest request, 	Model model ,HttpSession session) {
+	@RequestMapping(value="/loginProcess.do", method = {RequestMethod.POST, RequestMethod.GET})
+	public String login(HttpServletRequest request, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
 
-		String userid     = request.getParameter("userid");		//아이디
-		String pwd        = request.getParameter("pwd");			//비밀번호
-		String userIP 	  = request.getRemoteAddr();				    //접속 IP
-		String clientType = request.getHeader("User-Agent");	    //접속 브라우저
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		// 사용자 입력 정보 추출
+		String userid = (request.getHeader("userID") != null) ? request.getHeader("userID") : request.getParameter("userid");
+		String pwd = (request.getHeader("pwd") != null) ? request.getHeader("pwd") : request.getParameter("pwd");
+		String userIP = request.getRemoteAddr();
+		String clientType = request.getHeader("User-Agent");
 
-		if(StringUtil.isNull(pwd) || StringUtil.isNull(userid)) {
+		// 아이디와 비밀번호 유효성 검사
+		if (StringUtil.isNull(pwd) || StringUtil.isNull(userid)) {
 			model.addAttribute("errMsg", "아이디 또는 비밀번호를 입력해주세요.");
 			return "mmb/login";
 		}
@@ -67,10 +74,10 @@ public class MemberController extends CommonController{
 		requestLogin.setClienttype(clientType);
 
 		logger.debug("사용자 로그인 처리 : requestLogin : {}", requestLogin);
-		//로그인 처리
-		resultMap = memberService.loginProcess(requestLogin,session);
-		//로그인 처리 결과
+		// 로그인 처리
+		HashMap<String, Object> resultMap = authenticateUser(requestLogin, session);
 		String retVal = StringUtil.objectToString(resultMap.get("retVal"));
+
 		//로그인 실패
 		session.setAttribute("temp_userid", "");
 		if(!"0".equals(retVal)){
@@ -82,9 +89,11 @@ public class MemberController extends CommonController{
 				return "mmb/login";
 			}
 		}
-		//회원 등급 확인
-		Member member = (Member) resultMap.get("member");
 
+		session.setAttribute("autoLogin", requestLogin);
+
+		// 사용자 등급에 따라 페이지 리다이렉트
+		Member member = (Member) resultMap.get("member");
 		String grade = StringUtil.objectToString(member.getGrade());
 
 
@@ -158,6 +167,17 @@ public class MemberController extends CommonController{
 		return "mmb/login";
 			
 	}
+
+	/**
+	 * 로그 아웃 처리	
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/logout.do", method = {RequestMethod.POST, RequestMethod.GET})
+    public String logout(HttpServletRequest request) {
+        request.getSession().invalidate(); // 세션 무효화
+        return "redirect:/mmb/login"; // 로그인 페이지로 리다이렉트
+    }
 
 }
 

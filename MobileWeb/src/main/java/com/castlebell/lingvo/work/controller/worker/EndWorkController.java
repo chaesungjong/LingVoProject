@@ -17,7 +17,6 @@ import com.castlebell.lingvo.cmm.session.Member;
 import com.castlebell.lingvo.cmm.session.WorkSafetyCheck;
 import com.castlebell.lingvo.util.StringUtil;
 import com.castlebell.lingvo.work.dao.domain.request.WorkReviewModify;
-import com.castlebell.lingvo.work.dao.domain.request.WorkStopReqModify;
 import com.castlebell.lingvo.work.dao.domain.response.workIssueMsgListResponse;
 import com.castlebell.lingvo.work.service.WorkService;
 

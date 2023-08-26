@@ -1,11 +1,15 @@
 package com.castlebell.lingvo.cmm;
 
+import java.util.HashMap;
 import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.castlebell.lingvo.cmm.session.Member;
+import com.castlebell.lingvo.mmb.dao.domain.request.RequestLogin;
+import com.castlebell.lingvo.mmb.service.MemberService;
 
 @Controller
 public class CommonController {
@@ -15,6 +19,9 @@ public class CommonController {
 	protected final String EndWorkMapping = "work/worker/end";
 	protected final String IrrationalityMapping = "work/manager/irrationality";
 	protected final String FieldInformationMapping = "work/manager/fieldinformation";
+
+	@Autowired
+	private MemberService memberService;
 
 	/**
 	 * 최초 화면
@@ -52,6 +59,21 @@ public class CommonController {
 		}
 		
 	    return true;
+	}
+
+	/**
+	 * 사용자 로그인 처리를 위한 메서드.
+	 * 
+	 * @param userid 사용자 ID
+	 * @param pwd 사용자 비밀번호
+	 * @param userIP 사용자 IP 주소
+	 * @param clientType 클라이언트 타입
+	 * @param session HttpSession
+	 * @return 로그인 처리 결과를 담은 맵
+	 */
+	protected HashMap<String, Object> authenticateUser(RequestLogin requestLogin, HttpSession session) {
+		// memberService를 통해 로그인 처리 후 결과 반환
+		return memberService.loginProcess(requestLogin, session);
 	}
 }
 

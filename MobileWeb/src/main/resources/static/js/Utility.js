@@ -136,3 +136,22 @@ function callGallery(callback){
     
   }
 }
+
+function getloginInfo(userID,pwd){
+  try{
+    window.HyBridApp.getUserInfo(userID,pwd);
+  }
+  catch(e){
+
+  }
+}
+
+function logOut(){
+  try{
+    window.HyBridApp.getUserInfo("","");
+    location.href = "/mmb/logout.do"
+  }
+  catch(e){
+
+  }
+}

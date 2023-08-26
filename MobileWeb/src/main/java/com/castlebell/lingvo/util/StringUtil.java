@@ -3,7 +3,11 @@ package com.castlebell.lingvo.util;
 public class StringUtil {
     
     public static boolean isNull(String str) {
-        return str == null;
+        if(str == null || str.trim().length() == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static Integer stringToInt(String str) {

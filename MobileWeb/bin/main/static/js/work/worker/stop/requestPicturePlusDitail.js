@@ -8,7 +8,6 @@ $(document).ready(function() {
     // 가져온 값들을 각각의 HTML 요소에 할당
     $("#issueGubun").val(issueCode);
     $("#reqReason").val(issuesList);
-    if(issuesImageList == '') $("#picture").hide();
     $("#imgPaths").val(issuesImageList);
     $("#requestWork").text(issue);
 
@@ -26,21 +25,15 @@ $(document).ready(function() {
         $("#requestWork").append("<br>" + issueItem);
     });
 
-    /**
-     * 작업장 시설물 및 환경적 문제 : WS_FACILIT {현장, 요청자, 상세 위치, 사진}
-     * 개인 보호구 상태 이상 : WS_SHIELD {위치, 요청자, 시공사, 작업자, 작업 중지 요청 사유}
-     * 개인 건강 상태 이상 : WS_HEALTH {위치, 요청자, 시공사, 작업자, 작업 중지 요청 사유}
-     **/
+    // 문제 코드에 따른 UI 조정
     if (issueCode === 'WS_FACILIT') {
-        // 현장, 요청자, 상세 위치, 사진
         $('#field, #userid, #stopwork, #picture').show();
     } else if (issueCode === 'WS_SHIELD' || issueCode === 'WS_HEALTH') {
-        // 위치, 요청자, 시공사, 작업자, 작업 중지 요청 사유
-        $('#locationDiv, #field, #constName, #userid, #stopwork').show();
+        $('#location, #field, #constName, #userid, #stopwork').show();
     }
 
     // '다음' 버튼을 클릭하면 Comfirm 폼 제출
-    $("#next").click(function() { 
+    $("#next").click(function() {
          $('#Comfirm').submit();
     });
 });

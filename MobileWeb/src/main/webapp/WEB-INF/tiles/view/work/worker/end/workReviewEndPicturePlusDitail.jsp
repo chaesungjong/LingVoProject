@@ -23,7 +23,6 @@
     <div class="today_info" id="stopwork" style="display: none;">
       <div class="today_th">작업중지<br />요청사유</div>
       <div class="today_td" id="requestWork"></div>
-      <input type="hidden" id="reqReason"  name="reqReason">
     </div>
     <div class="today_info" id="content" style="display: none;">
       <div class="today_th">내용</div>
@@ -37,6 +36,7 @@
     </div>
     <div class="btn_strock mt30"><a id="next" href="#" class="btn_ok_s">다음</a></div>			
   </div>
+  <input type="hidden" id="reqReason"  name="reqReason">
   <input type="hidden" id="issueGubun" name="issueGubun">
 </form>
 <script src="/js/work/worker/end/workReviewEndPicturePlusDitail.js"></script>

@@ -1,5 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.castlebell.lingvo.cmm.session.Member" %>
+<%@ page import="com.castlebell.lingvo.mmb.dao.domain.request.RequestLogin" %>
+<%  
+    // 세션에서 사용자 정보 가져오기
+    Member member = (Member) session.getAttribute("member");
+    RequestLogin autoLogin = (RequestLogin) session.getAttribute("autoLogin");
+    String userName = (member != null) ? member.getName() : "";
+    String userid = (member != null) ? member.getUserid() : "";
+    String userPw = (autoLogin != null) ? autoLogin.getUserpw() : "";
+%>
 
+<script>
+    // 사용자 이름과 아이디 변수 선언
+    var userid    = '<%= userid %>';
+    var userPw    = '<%= userPw %>';
+    if (userid!= ''||userPw !== '') {
+		getloginInfo(userid, userPw);
+	}
+</script>
 <!-- 환영 메시지 영역 시작 -->
 <div class="welcome">
   <div class="icon_my">

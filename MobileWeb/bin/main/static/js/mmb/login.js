@@ -21,3 +21,22 @@ $(document).ready(function() {
     });
 
 });
+
+function nativeLogin(id ,pwd){
+  $("#userid").val(id);
+  $("#pwd").val(pwd);
+  $("#frmLogin").prop("action", "/mmb/loginProcess.do");
+  $("#frmLogin").submit();
+}
+
+/**
+ * QR 코드 스캔
+ */
+function nativeLogin(){
+  try{
+    window.HyBridApp.nativeLogin();
+  }
+  catch(e){
+    
+  }
+}
