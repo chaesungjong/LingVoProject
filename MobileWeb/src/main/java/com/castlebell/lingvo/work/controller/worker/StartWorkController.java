@@ -30,13 +30,10 @@ import com.castlebell.lingvo.work.service.WorkService;
 @RequestMapping("work/worker/start")
 public class StartWorkController extends CommonController {
     
-    private static final Logger logger = LoggerFactory.getLogger(StartWorkController.class);
-    private final WorkService workService;
-
     @Autowired
-    public StartWorkController(WorkService workService) {
-        this.workService = workService;
-    }
+    private WorkService workService;
+    private static final Logger logger = LoggerFactory.getLogger(StartWorkController.class);
+
 
     /**
      * 작업 시작에 필요한 QR코드 인증 화면을 제공한다.
@@ -53,10 +50,10 @@ public class StartWorkController extends CommonController {
 
         // 작업 정보 조회
         WorkSafetyCheck result = workService.getSiteInfo(session, request);
-        // if (!"0".equals(result.getErrCode())) {
-        //     redirectAttributes.addAttribute("errMsg", result.getErrMsg());
-        //     return "redirect:/work/worker/main";
-        // }
+        if (!"0".equals(result.getErrCode())) {
+            redirectAttributes.addAttribute("errMsg", result.getErrMsg());
+            return "redirect:/work/worker/main";
+        }
 
         model.addAttribute("siteAddress", result.getSiteAddress());
         model.addAttribute("siteName", result.getSiteName());
@@ -134,10 +131,10 @@ public class StartWorkController extends CommonController {
         String workGubun = StringUtil.objectToString(request.getParameter("workGubun"));
         WorkSafetyCheck result = workService.checkSurvey(session, request, "SURVEY_END", workGubun);
 
-        // if (result.getErrCode() != null && !"0".equals(result.getErrCode())) {
-        //     redirectAttributes.addAttribute("errMsg", result.getErrMsg());
-        //     return "redirect:/work/worker/main";
-        //}
+         if (result.getErrCode() != null && !"0".equals(result.getErrCode())) {
+            redirectAttributes.addAttribute("errMsg", result.getErrMsg());
+            return "redirect:/work/worker/main";
+        }
 
         return StartWorkMapping + "/workCheckStepConfirm";
     }

@@ -13,6 +13,7 @@ import com.castlebell.lingvo.cmm.CommonController;
 import com.castlebell.lingvo.cmm.session.Member;
 import com.castlebell.lingvo.mmb.dao.domain.request.RequestLogin;
 import com.castlebell.lingvo.mmb.service.MemberService;
+import com.castlebell.lingvo.util.SHA256Util;
 import com.castlebell.lingvo.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,7 +70,7 @@ public class MemberController extends CommonController{
 		RequestLogin requestLogin = new RequestLogin();
 
 		requestLogin.setUserid(userid);
-		requestLogin.setUserpw(pwd);
+		requestLogin.setUserpw(SHA256Util.hashWithSHA256(pwd));
 		requestLogin.setIp(userIP);
 		requestLogin.setClienttype(clientType);
 
@@ -155,7 +156,7 @@ public class MemberController extends CommonController{
 
 		Member member = (Member) resultMap.get("member");
 		if(member != null) {
-			retVal = StringUtil.objectToString(member.getRetVal());
+			retVal = StringUtil.objectToString(member.getEetVal());
 			retErrMsg = StringUtil.objectToString(member.getErrMsg());
 		}
 

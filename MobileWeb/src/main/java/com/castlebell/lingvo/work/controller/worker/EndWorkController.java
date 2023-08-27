@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.castlebell.lingvo.cmm.CommonController;
 import com.castlebell.lingvo.cmm.session.Member;
-import com.castlebell.lingvo.cmm.session.WorkSafetyCheck;
 import com.castlebell.lingvo.util.StringUtil;
 import com.castlebell.lingvo.work.dao.domain.request.WorkReviewModify;
 import com.castlebell.lingvo.work.dao.domain.response.workIssueMsgListResponse;
@@ -45,12 +44,11 @@ public class EndWorkController extends CommonController {
 	 */
     @RequestMapping(value = "/workReview", method=RequestMethod.GET)
 	public String workReview(HttpServletRequest request, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
-		if(!checkLogin(session, redirectAttributes)){ return "redirect:/mmb/login"; }
-		WorkSafetyCheck workSafetyCheck =(WorkSafetyCheck) session.getAttribute("WorkSafetyCheck");
-		// if(workSafetyCheck == null) {
-		// 	redirectAttributes.addAttribute("errMsg", "현재 진행중인 작업이 없습니다. ");
-		// 	return "redirect:/work/worker/main";
-		// }
+
+        if(checkTodayWork(session, redirectAttributes) == false){
+            return "redirect:/work/worker/main";
+        }
+
 	    return EndWorkMapping + "/workReview";
 	}
 
@@ -60,12 +58,11 @@ public class EndWorkController extends CommonController {
 	 */
     @RequestMapping(value = "/workReviewEnd", method=RequestMethod.GET)
 	public String workReviewEnd(HttpServletRequest request, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
-		if(!checkLogin(session, redirectAttributes)) { return "redirect:/mmb/login"; }
-		WorkSafetyCheck workSafetyCheck =(WorkSafetyCheck) session.getAttribute("WorkSafetyCheck");
-		// if(workSafetyCheck == null) {
-		// 	redirectAttributes.addAttribute("errMsg", "현재 진행중인 작업이 없습니다. ");
-		// 	return "redirect:/work/worker/main";
-		// }
+		
+		if(checkTodayWork(session, redirectAttributes) == false){
+            return "redirect:/work/worker/main";
+        }
+
 		session.setAttribute("WorkSafetyCheck", null);
 	    return EndWorkMapping + "/workReviewEnd";
 	}
@@ -76,12 +73,11 @@ public class EndWorkController extends CommonController {
 	 */
     @RequestMapping(value = "/workImprovementReview", method=RequestMethod.GET)
 	public String workImprovementReview(HttpServletRequest request, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
-		if(!checkLogin(session, redirectAttributes)) { return "redirect:/mmb/login"; }
-		WorkSafetyCheck workSafetyCheck =(WorkSafetyCheck) session.getAttribute("WorkSafetyCheck");
-		// if(workSafetyCheck == null) {
-		// 	redirectAttributes.addAttribute("errMsg", "현재 진행중인 작업이 없습니다. ");
-		// 	return "redirect:/work/worker/main";
-		// }
+
+		if(checkTodayWork(session, redirectAttributes) == false){
+            return "redirect:/work/worker/main";
+        }
+
 	    return EndWorkMapping + "/workImprovementReview";
 	}
 
@@ -91,7 +87,11 @@ public class EndWorkController extends CommonController {
 	 */
     @RequestMapping(value = "/workReviewissues", method=RequestMethod.GET)
 	public String workReviewissues(HttpServletRequest request, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
-		if(!checkLogin(session, redirectAttributes)) { return "redirect:/mmb/login"; }
+
+		if(checkTodayWork(session, redirectAttributes) == false){
+            return "redirect:/work/worker/main";
+        }
+
 		String issueGubun = StringUtil.objectToString(request.getParameter("issueGubun"));
 		String etcParam1 = StringUtil.objectToString(request.getParameter("etcParam1"));
 		HashMap<String, String> map = new HashMap<>();
@@ -108,6 +108,11 @@ public class EndWorkController extends CommonController {
 	 */
     @RequestMapping(value = "/workReviewEndPicturePlus", method=RequestMethod.GET)
 	public String workReviewEndPicturePlus(HttpServletRequest request, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+
+		if(checkTodayWork(session, redirectAttributes) == false){
+            return "redirect:/work/worker/main";
+        }
+		
 	    return EndWorkMapping + "/workReviewEndPicturePlus";
 	}
 
@@ -117,16 +122,15 @@ public class EndWorkController extends CommonController {
 	 */
     @RequestMapping(value = "/workReviewEndPlusDitail", method=RequestMethod.GET)
 	public String workReviewEndPlusDitail(HttpServletRequest request, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
-		if(!checkLogin(session, redirectAttributes)) { return "redirect:/mmb/login"; }
-		WorkSafetyCheck workSafetyCheck =(WorkSafetyCheck) session.getAttribute("WorkSafetyCheck");
+
+		if(checkTodayWork(session, redirectAttributes) == false){
+            return "redirect:/work/worker/main";
+        }
+		
 		Member member = (Member) session.getAttribute("member");
-		// if(workSafetyCheck == null) {
-		// 	redirectAttributes.addAttribute("errMsg", "잘못 된 접근 입니다.");
-		// 	return "redirect:/work/worker/main";
-		// }
 		model.addAttribute("name", member.getName());								//이름
-		model.addAttribute("siteName", workSafetyCheck.getSiteName());			//현장
-		model.addAttribute("location", workSafetyCheck.getSiteAddress());			//위치
+		model.addAttribute("siteName", member.getSiteName());						//현장
+		model.addAttribute("location", member.getSiteAddress());					//위치
 	    return EndWorkMapping + "/workReviewEndPlusDitail";
 	}
 
@@ -136,16 +140,15 @@ public class EndWorkController extends CommonController {
 	 */
     @RequestMapping(value = "/workReviewEndPicturePlusDitail", method=RequestMethod.GET)
 	public String workReviewEndPicturePlusDitail(HttpServletRequest request, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
-		if(!checkLogin(session, redirectAttributes)) { return "redirect:/mmb/login"; }
-		WorkSafetyCheck workSafetyCheck =(WorkSafetyCheck) session.getAttribute("WorkSafetyCheck");
-		// if(workSafetyCheck == null) {
-		// 	redirectAttributes.addAttribute("errMsg", "잘못 된 접근 입니다.");
-		// 	return "redirect:/work/worker/main";
-		// }
+
+		if(checkTodayWork(session, redirectAttributes) == false){
+            return "redirect:/work/worker/main";
+        }
+		
 		Member member = (Member) session.getAttribute("member");
 		model.addAttribute("name", member.getName());								//이름
-		model.addAttribute("siteName", workSafetyCheck.getSiteName());			//현장
-		model.addAttribute("location", workSafetyCheck.getSiteAddress());			//위치
+		model.addAttribute("siteName", member.getSiteName());						//현장
+		model.addAttribute("location", member.getSiteAddress());					//위치
 	    return EndWorkMapping + "/workReviewEndPicturePlusDitail";
 	}
 
@@ -157,13 +160,12 @@ public class EndWorkController extends CommonController {
 	public String sendWorkReview(HttpServletRequest request, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
 		
 		// 로그인 상태 확인
-		if (!checkLogin(session, redirectAttributes)) {
-			return "/mmb/login";
-		}
+		if(checkTodayWork(session, redirectAttributes) == false){
+            return "redirect:/work/worker/main";
+        }
 
 		// 세션에서 회원 정보와 안전 검사 정보 추출
 		Member member = (Member) session.getAttribute("member");
-		WorkSafetyCheck workSafetyCheck = (WorkSafetyCheck) session.getAttribute("WorkSafetyCheck");
 
 		// 리뷰 수정 정보 객체 초기화 및 설정
 		WorkReviewModify workReviewModify = new WorkReviewModify();
@@ -177,7 +179,7 @@ public class EndWorkController extends CommonController {
 		workReviewModify.setImgPaths(StringUtil.objectToString(request.getParameter("imgPaths")));
 		workReviewModify.setState("Y");
 		workReviewModify.setIp(StringUtil.objectToString(request.getRemoteAddr()));
-		workReviewModify.setWrSeq(StringUtil.objectToString(workSafetyCheck.getWorkSeq()));
+		workReviewModify.setWrSeq(StringUtil.objectToString(""));
 
 		// 리뷰 수정 정보를 서비스로 전달 및 처리
 		workService.workReviewModify(workReviewModify);

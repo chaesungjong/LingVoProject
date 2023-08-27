@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="currentURL" value="${requestScope['javax.servlet.forward.request_uri']}" />
-<c:if test="${fn:contains(currentURL, '/work/worker/main') or fn:contains(currentURL, '/board/noticeBoard') or fn:contains(currentURL, '/cs/emrContact')  or fn:contains(currentURL, '/board/videoBoard') }">
+<c:if test="${fn:contains(currentURL, '/work/worker/main') or fn:contains(currentURL, '/board/noticeBoard') or fn:contains(currentURL, '/cs/emrContact')  or fn:contains(currentURL, '/board/videoBoard')  or fn:contains(currentURL, '/cs/faq') }">
 	<div id="footers">	
 		<a href="/work/worker/main">
 			<div class="mn_wrap">

@@ -26,12 +26,8 @@ import com.castlebell.lingvo.work.service.WorkService;
 public class FieldInformationController extends CommonController {
 
     private static final Logger logger = LoggerFactory.getLogger(FieldInformationController.class);
-    private final WorkService workService;
-
     @Autowired
-    public FieldInformationController(WorkService workService) {
-        this.workService = workService;
-    }
+    private WorkService workService;
 
     /**
      * MY 현장 정보 메인 페이지

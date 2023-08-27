@@ -56,6 +56,4 @@
       </ul>
     </div>		
   </div>
-  
 </div>
-<script src="/js/include/footer.js"></script>

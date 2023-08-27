@@ -31,7 +31,7 @@
 <!-- 환영 메시지 영역 종료 -->
 
 <!-- 날씨 정보 영역 시작 -->
-<div class="weather_position">
+<div class="weather_position" id="detailLink">
   <div class="w_area">
     <div class="weather_left">
       <div class="weather_detail">
@@ -84,19 +84,17 @@
   <!-- 주요 메뉴 영역 종료 -->
 
   <!-- 뉴스 영역 시작 -->
-  <div class="news_area">
-    <div class="news_info">
-      <div><img src="/assets/news01-1.png" alt="연합뉴스"> 1시간 전</div>
-      <div>[네이버 뉴스]</div>
-    </div>
-    <div class="news_title">
-      <div><a href="#">서울 33도 등 무더위, 전국 대부분 폭염특보 </a></div>
-      <div><a href="#">해병대 "순직 해병대원 명복 빌어.유족께.</a></div>
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <c:forEach var="notice" items="${noticeList}" varStatus="status">
+        <div class="carousel-item ${status.index == 0 ? 'active' : ''}">
+            <a href="${notice.url}"><img src="${notice.imgPaths}" class="d-block w-100"></a>
+        </div>
+    </c:forEach>
     </div>
   </div>
   <!-- 뉴스 영역 종료 -->
 </div>
-
 <!-- 하단 자바스크립트 포함 영역 시작 -->
 <script src="/js/work/worker/main.js"></script>
 <!-- 하단 자바스크립트 포함 영역 종료 -->

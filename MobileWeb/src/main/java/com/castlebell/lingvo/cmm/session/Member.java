@@ -11,20 +11,34 @@ public class Member implements Serializable {
     private String pwd;
     private String name;
     private String hpno;
-    private String emrHpno;
-    private String bloodType;
-    private String siteCode;
-    private String addr;
-    private String foreignYn;
-    private String idImgUrl;
-    private String state;
+    private String birthday;
+    private String gender;
+    private String companyName;
+    private String workType;
     private String grade;
-    private String requestTime;
-    private String approvalTime;
-    private String approvaladminId;
-    private Integer retVal;
+    private String state;
+    private String appUseYN;
+    private String mngUseYN;
+    private String systemtime;
+    private String siteCode;
+    private String siteName;
+    private String siteCompanyName;
+    private String siteAddress;
+    private String siteSubAddr1;
+    private String siteSubAddr2;
+    private String siteState;
+    private String constCode;
+    private String constName;
+    private String constState;
+    private String svgCode;
+    private String svgName;
+    private String svgRegion;
+    private String svgState;
+    private String todayWorkYN;
+    private String eetVal;
     private String errMsg;
 
+    // Getter and Setter methods
     public String getUserid() {
         return userid;
     }
@@ -33,19 +47,11 @@ public class Member implements Serializable {
         this.userid = userid;
     }
 
-    public String getsiteCode() {
-        return siteCode;
-    }
-
-    public void setsiteCode(String siteCode) {
-        this.siteCode = siteCode;
-    }
-
-    public String getuserkey() {
+    public String getUserkey() {
         return userkey;
     }
 
-    public void setuserkey(String userkey) {
+    public void setUserkey(String userkey) {
         this.userkey = userkey;
     }
 
@@ -73,52 +79,36 @@ public class Member implements Serializable {
         this.hpno = hpno;
     }
 
-    public String getemrHpno() {
-        return emrHpno;
+    public String getBirthday() {
+        return birthday;
     }
 
-    public void setemrHpno(String emrHpno) {
-        this.emrHpno = emrHpno;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
-    public String getBloodType() {
-        return bloodType;
+    public String getGender() {
+        return gender;
     }
 
-    public void setBloodType(String bloodType) {
-        this.bloodType = bloodType;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public String getAddr() {
-        return addr;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setAddr(String addr) {
-        this.addr = addr;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
-    public String getForeignYn() {
-        return foreignYn;
+    public String getWorkType() {
+        return workType;
     }
 
-    public void setForeignYn(String foreignYn) {
-        this.foreignYn = foreignYn;
-    }
-
-    public String getIdImgUrl() {
-        return idImgUrl;
-    }
-
-    public void setIdImgUrl(String idImgUrl) {
-        this.idImgUrl = idImgUrl;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
+    public void setWorkType(String workType) {
+        this.workType = workType;
     }
 
     public String getGrade() {
@@ -129,36 +119,164 @@ public class Member implements Serializable {
         this.grade = grade;
     }
 
-    public String getRequestTime() {
-        return requestTime;
+    public String getState() {
+        return state;
     }
 
-    public void setRequestTime(String requestTime) {
-        this.requestTime = requestTime;
+    public void setState(String state) {
+        this.state = state;
     }
 
-    public String getApprovalTime() {
-        return approvalTime;
+    public String getAppUseYN() {
+        return appUseYN;
     }
 
-    public void setApprovalTime(String approvalTime) {
-        this.approvalTime = approvalTime;
+    public void setAppUseYN(String appUseYN) {
+        this.appUseYN = appUseYN;
     }
 
-    public String getApprovaladminId() {
-        return approvaladminId;
+    public String getMngUseYN() {
+        return mngUseYN;
     }
 
-    public void setApprovaladminId(String approvaladminId) {
-        this.approvaladminId = approvaladminId;
+    public void setMngUseYN(String mngUseYN) {
+        this.mngUseYN = mngUseYN;
     }
 
-    public Integer getRetVal() {
-        return retVal;
+    public String getSystemtime() {
+        return systemtime;
     }
 
-    public void setRetVal(Integer retVal) {
-        this.retVal = retVal;
+    public void setSystemtime(String systemtime) {
+        this.systemtime = systemtime;
+    }
+
+    public String getsiteCode() {
+        return siteCode;
+    }
+
+    public void setsiteCode(String siteCode) {
+        this.siteCode = siteCode;
+    }
+
+    public String getSiteName() {
+        return siteName;
+    }
+
+    public void setSiteName(String siteName) {
+        this.siteName = siteName;
+    }
+
+    public String getSiteCompanyName() {
+        return siteCompanyName;
+    }
+
+    public void setSiteCompanyName(String siteCompanyName) {
+        this.siteCompanyName = siteCompanyName;
+    }
+
+    public String getSiteAddress() {
+        return siteAddress;
+    }
+
+    public void setSiteAddress(String siteAddress) {
+        this.siteAddress = siteAddress;
+    }
+
+    public String getSiteSubAddr1() {
+        return siteSubAddr1;
+    }
+
+    public void setSiteSubAddr1(String siteSubAddr1) {
+        this.siteSubAddr1 = siteSubAddr1;
+    }
+
+    public String getSiteSubAddr2() {
+        return siteSubAddr2;
+    }
+
+    public void setSiteSubAddr2(String siteSubAddr2) {
+        this.siteSubAddr2 = siteSubAddr2;
+    }
+
+    public String getSiteState() {
+        return siteState;
+    }
+
+    public void setSiteState(String siteState) {
+        this.siteState = siteState;
+    }
+
+    public String getConstCode() {
+        return constCode;
+    }
+
+    public void setConstCode(String constCode) {
+        this.constCode = constCode;
+    }
+
+    public String getConstName() {
+        return constName;
+    }
+
+    public void setConstName(String constName) {
+        this.constName = constName;
+    }
+
+    public String getConstState() {
+        return constState;
+    }
+
+    public void setConstState(String constState) {
+        this.constState = constState;
+    }
+
+    public String getSvgCode() {
+        return svgCode;
+    }
+
+    public void setSvgCode(String svgCode) {
+        this.svgCode = svgCode;
+    }
+
+    public String getSvgName() {
+        return svgName;
+    }
+
+    public void setSvgName(String svgName) {
+        this.svgName = svgName;
+    }
+
+    public String getSvgRegion() {
+        return svgRegion;
+    }
+
+    public void setSvgRegion(String svgRegion) {
+        this.svgRegion = svgRegion;
+    }
+
+    public String getSvgState() {
+        return svgState;
+    }
+
+    public void setSvgState(String svgState) {
+        this.svgState = svgState;
+    }
+
+    public String getTodayWorkYN() {
+        return todayWorkYN;
+    }
+
+    public void setTodayWorkYN(String todayWorkYN) {
+        this.todayWorkYN = todayWorkYN;
+    }
+
+    public String getEetVal() {
+        return eetVal;
+    }   
+
+    public void setEetVal(String eetVal) {
+        this.eetVal = eetVal;
     }
 
     public String getErrMsg() {
@@ -168,25 +286,39 @@ public class Member implements Serializable {
     public void setErrMsg(String errMsg) {
         this.errMsg = errMsg;
     }
-    
+
     @Override
     public String toString() {
-        return "Member{" +
-                "userid='" + userid + '\'' +
-                ", userkey='" + userkey + '\'' +
-                ", pwd='" + pwd + '\'' +
-                ", name='" + name + '\'' +
-                ", hpno='" + hpno + '\'' +
-                ", emrHpno='" + emrHpno + '\'' +
-                ", bloodType='" + bloodType + '\'' +
-                ", addr='" + addr + '\'' +
-                ", foreignYn='" + foreignYn + '\'' +
-                ", idImgUrl='" + idImgUrl + '\'' +
-                ", state='" + state + '\'' +
-                ", grade='" + grade + '\'' +
-                ", requestTime='" + requestTime + '\'' +
-                ", approvalTime='" + approvalTime + '\'' +
-                ", approvaladminId='" + approvaladminId + '\'' +
-                '}';
+        return "Member [" +
+                "userid=" + userid +
+                ", userkey=" + userkey +
+                ", pwd=" + pwd +
+                ", name=" + name +
+                ", hpno=" + hpno +
+                ", birthday=" + birthday +
+                ", gender=" + gender +
+                ", companyName=" + companyName +
+                ", workType=" + workType +
+                ", grade=" + grade +
+                ", state=" + state +
+                ", appUseYN=" + appUseYN +
+                ", mngUseYN=" + mngUseYN +
+                ", systemtime=" + systemtime +
+                ", siteCode=" + siteCode +
+                ", siteName=" + siteName +
+                ", siteCompanyName=" + siteCompanyName +
+                ", siteAddress=" + siteAddress +
+                ", siteSubAddr1=" + siteSubAddr1 +
+                ", siteSubAddr2=" + siteSubAddr2 +
+                ", siteState=" + siteState +
+                ", constCode=" + constCode +
+                ", constName=" + constName +
+                ", constState=" + constState +
+                ", svgCode=" + svgCode +
+                ", svgName=" + svgName +
+                ", svgRegion=" + svgRegion +
+                ", svgState=" + svgState +
+                ", todayWorkYN=" + todayWorkYN +
+                "]";
     }
 }

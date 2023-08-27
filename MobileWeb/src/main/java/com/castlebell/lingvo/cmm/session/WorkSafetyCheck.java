@@ -117,7 +117,7 @@ public class WorkSafetyCheck implements Serializable {
         return siteCode;
     }
 
-    public void setSiteCode(String siteCode) {
+    public void setsiteCode(String siteCode) {
         this.siteCode = siteCode;
     }
 

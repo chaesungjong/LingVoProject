@@ -11,9 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import com.castlebell.lingvo.cmm.CommonController;
 import com.castlebell.lingvo.cmm.session.Member;
-import com.castlebell.lingvo.cmm.session.WorkSafetyCheck;
 import com.castlebell.lingvo.cs.dao.domain.responese.EmergencyInfo;
 import com.castlebell.lingvo.cs.service.CustomerServiceCenterService;
 
@@ -22,7 +21,7 @@ import com.castlebell.lingvo.cs.service.CustomerServiceCenterService;
  */
 @Controller
 @RequestMapping("cs")
-public class CustomerServiceCenterController {
+public class CustomerServiceCenterController extends CommonController{
 
     private static final Logger logger = LoggerFactory.getLogger(CustomerServiceCenterController.class);
     private final CustomerServiceCenterService customerServiceCenterService;
@@ -41,13 +40,10 @@ public class CustomerServiceCenterController {
 	public String emrContact(HttpServletRequest request, Model model ,HttpSession session, RedirectAttributes redirectAttributes) {
         
         logger.debug("emrContact 진입");
-
-        WorkSafetyCheck workSafetyCheck = (WorkSafetyCheck) session.getAttribute("WorkSafetyCheck");
-
-        // if(workSafetyCheck == null){
-		// 	redirectAttributes.addAttribute("errMsg", "금일 작업 시작을 해주세요.");
-        //     return "redirect:/work/worker/main";
-        // }
+        
+        if(checkTodayWork(session, redirectAttributes) == false){
+            return "redirect:/work/worker/main";
+        }
 
         Member member = (Member) session.getAttribute("member");
 		List<EmergencyInfo> list = customerServiceCenterService.getEmergencyContactList(session,member.getsiteCode());

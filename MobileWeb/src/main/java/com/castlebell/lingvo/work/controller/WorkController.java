@@ -1,7 +1,13 @@
 package com.castlebell.lingvo.work.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import com.castlebell.lingvo.board.dao.domain.request.NewsFilter;
+import com.castlebell.lingvo.board.dao.domain.response.Board;
+import com.castlebell.lingvo.board.service.BoardService;
 import com.castlebell.lingvo.cmm.CommonController;
 import com.castlebell.lingvo.cmm.session.Member;
 import com.castlebell.lingvo.work.service.WorkService;
@@ -21,10 +27,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RequestMapping("work")
 public class WorkController extends CommonController {
 	
-    private static final Logger logger = LoggerFactory.getLogger(WorkController.class);
-
     @Autowired
     private WorkService workService;
+
+    @Autowired
+    private BoardService boardservice;
+
+    private static final Logger logger = LoggerFactory.getLogger(WorkController.class);
+
 
     /**
      * 작업자 메인 화면을 반환한다.
@@ -46,8 +56,6 @@ public class WorkController extends CommonController {
         }
         
 		RequestLogin requestLogin = (RequestLogin) session.getAttribute("autoLogin");
-        requestLogin.setIp("");
-        requestLogin.setClienttype("");
 
         if(requestLogin != null){
             try{
@@ -62,6 +70,18 @@ public class WorkController extends CommonController {
         if (errMsg != null && !errMsg.isEmpty()) {
             model.addAttribute("errMsg", errMsg);
         }
+
+        NewsFilter notice = new NewsFilter();
+		notice.setGubun("TV");
+		notice.setPageNo("");
+		notice.setPageSize("");
+		notice.setEdate("");
+		notice.setEdate("");
+		notice.setSearchGubun("");
+		notice.setSearchVal("");
+
+		List<Board> noticeList = boardservice.getboardList(notice);
+        model.addAttribute("noticeList", noticeList);
         
         return "work/worker/main";
     }
@@ -132,4 +152,6 @@ public class WorkController extends CommonController {
 
         return "work/city/main";
     }
+
+
 }

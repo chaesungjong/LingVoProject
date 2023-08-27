@@ -19,7 +19,7 @@
         </div>
       <div class="btn_strock mt30"><a id="next" href="#" class="btn_ok_s">다음</a></div>		
       <div class="workStop_wrap" id="pictureList" style="display: none;">			
-        <div class="workStop_title">사진</div>
+        <div class="workStop_title">사진 첨부</div>
       </div>	
     <div class="icon_photo_wrap" id="imageDiv">
     </div>

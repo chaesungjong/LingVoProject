@@ -41,6 +41,38 @@ function getLocation(successCallback) {
   }
 }
 
+
+const forbiddenWords = [
+  // 기존 금칙어
+  "badword1", "badword2", "badword3",
+  
+  // SQL 인젝션
+  "OR '1'='1'", "DROP TABLE", "--", ";", "UNION", "SELECT", "INSERT", "UPDATE", "DELETE", 
+
+  // 크로스 사이트 스크립팅(XSS)
+  "<script>", "alert(", "document.cookie", "window.location", "<img", "onload", "onerror",
+
+  // 시스템 명령어 실행
+  "&&", "|", ">", "rm ", "shutdown ", "echo", "ls ", "cat ", 
+
+  // 디렉토리 탐색(Directory Traversal)
+  "../", "..\\", "%2e%2e/", "%2e%2e\\"
+];
+
+/**
+ * 특수문자 제거
+ * return true : 금칙어 존재
+ * return false : 금칙어 없음
+ **/
+function forbiddenWordsCheck(str) {
+  for (let word of forbiddenWords) {
+      if (str.toLowerCase().includes(word)) {
+          return true;
+      }
+  }
+  return false;
+}
+
 /**
  * 위도 경도를 통하여 날씨 정보 가져오기 
  * @param   {위도}        latitude

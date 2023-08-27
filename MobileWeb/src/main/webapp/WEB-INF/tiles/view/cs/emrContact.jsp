@@ -12,4 +12,3 @@
   </c:forEach>
   </div>
 </div>
-<script src="/js/include/footer.js"></script>

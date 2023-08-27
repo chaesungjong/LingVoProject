@@ -75,5 +75,24 @@ public class CommonController {
 		// memberService를 통해 로그인 처리 후 결과 반환
 		return memberService.loginProcess(requestLogin, session);
 	}
+
+	/*
+	 * 금일 작업 시작 체크
+	 */
+	protected boolean checkTodayWork(HttpSession session ,RedirectAttributes redirectAttributes ) {
+
+		boolean state = checkLogin(session, redirectAttributes);
+		Member member = (Member) session.getAttribute("member");
+		// 로그인 실패
+		if(!state) return false;
+		// 로그인 성공
+		if(state && "Y".equals(member.getTodayWorkYN()) ){
+			return true;
+		}
+
+		redirectAttributes.addAttribute("errMsg", "금일작업시작을 먼저 진행해주세요.");
+		return false;
+		
+	}
 }
 

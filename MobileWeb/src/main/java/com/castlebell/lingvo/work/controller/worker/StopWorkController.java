@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.castlebell.lingvo.cmm.CommonController;
 import com.castlebell.lingvo.cmm.session.Member;
-import com.castlebell.lingvo.cmm.session.WorkSafetyCheck;
 import com.castlebell.lingvo.util.StringUtil;
 import com.castlebell.lingvo.work.dao.domain.request.WorkStopReqModify;
 import com.castlebell.lingvo.work.dao.domain.response.workIssueMsgListResponse;
@@ -28,13 +27,10 @@ import com.castlebell.lingvo.work.service.WorkService;
 @RequestMapping("work/worker/stop")
 public class StopWorkController extends CommonController{
     
-    private static final Logger logger = LoggerFactory.getLogger(StopWorkController.class);
-    private final WorkService workService;
-
     @Autowired
-    public StopWorkController(WorkService workService) {
-        this.workService = workService;
-    }
+    private  WorkService workService;
+    private static final Logger logger = LoggerFactory.getLogger(StopWorkController.class);
+
 
     /**
      * 사용자가 중단하려는 작업 목록을 보여준다.
@@ -44,16 +40,10 @@ public class StopWorkController extends CommonController{
     public String requestStopWorkList(HttpServletRequest request, Model model ,HttpSession session ,RedirectAttributes redirectAttributes) {
         logger.debug("requestStopWorkList 진입");
 
-        // 로그인 확인
-        if(!checkLogin(session, redirectAttributes)){ 
-            return "redirect:/mmb/login"; 
+        if(checkTodayWork(session, redirectAttributes) == false){
+            return "redirect:/work/worker/main";
         }
 
-        WorkSafetyCheck workSafetyCheck = (WorkSafetyCheck) session.getAttribute("WorkSafetyCheck");
-        // if(workSafetyCheck == null){
-        //     redirectAttributes.addAttribute("errMsg", "현재 작업중이지 않습니다.");
-        //     return "redirect:/work/worker/main";
-        // }
         return StopWorkMapping + "/requestStopWorkList";
     }
 
@@ -65,16 +55,9 @@ public class StopWorkController extends CommonController{
     public String stopMessageList(HttpServletRequest request, Model model ,HttpSession session,RedirectAttributes redirectAttributes) {
         logger.debug("stopMessageList 진입");
 
-        // 로그인 확인
-        if(!checkLogin(session, redirectAttributes)){ 
-            return "redirect:/mmb/login"; 
+        if(checkTodayWork(session, redirectAttributes) == false){
+            return "redirect:/work/worker/main";
         }
-
-        WorkSafetyCheck workSafetyCheck = (WorkSafetyCheck) session.getAttribute("WorkSafetyCheck");
-        // if(workSafetyCheck == null){
-        //     redirectAttributes.addAttribute("errMsg", "현재 작업중이지 않습니다.");
-        //     return "redirect:/work/worker/main";
-        // }
 
         String issueGubun = StringUtil.objectToString(request.getParameter("issueGubun"));
         String etcParam1  = StringUtil.objectToString(request.getParameter("etcParam1"));
@@ -107,24 +90,17 @@ public class StopWorkController extends CommonController{
     public String requestPicturePlusDitail(HttpServletRequest request, Model model ,HttpSession session, RedirectAttributes redirectAttributes) {
         logger.debug("requestPicturePlusDitail 진입");
         
-        // 로그인 확인
-        if(!checkLogin(session, redirectAttributes)){ 
-            return "redirect:/mmb/login"; 
+        if(checkTodayWork(session, redirectAttributes) == false){
+            return "redirect:/work/worker/main";
         }
-        
-        WorkSafetyCheck workSafetyCheck = (WorkSafetyCheck) session.getAttribute("WorkSafetyCheck");
-        // if(workSafetyCheck == null){
-        //     redirectAttributes.addAttribute("errMsg", "현재 작업중이지 않습니다.");
-        //     return "redirect:/work/worker/main";
-        // }
 
         Member member = (Member) session.getAttribute("member");
 
         // 작업 중단 요청 상세 내용 설정
-        model.addAttribute("name", member.getName());    //이름
-        model.addAttribute("siteName", workSafetyCheck.getSiteName());   //현장 이름
-        model.addAttribute("location", workSafetyCheck.getSiteAddress());   //현장 위치
-        model.addAttribute("constName", workSafetyCheck.getConstName());    //시공사 이름
+        model.addAttribute("name", member.getName());               //이름
+        model.addAttribute("siteName", member.getSiteName());       //현장 이름
+        model.addAttribute("location", member.getSiteAddress());    //현장 위치
+        model.addAttribute("constName", member.getConstName());     //시공사 이름
         
         return StopWorkMapping + "/requestPicturePlusDitail";
     }
@@ -137,16 +113,11 @@ public class StopWorkController extends CommonController{
     @RequestMapping(value = "/requestPictureComfirm", method = RequestMethod.POST)
     public String requestPictureComfirm(HttpServletRequest request, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
         
-        // 로그 진입을 알리는 메시지
-        logger.info("requestPictureComfirm 진입");
-
-        // 로그인 상태 확인
-        if (!checkLogin(session, redirectAttributes)) {
-            return "redirect:/mmb/login";
+        if(checkTodayWork(session, redirectAttributes) == false){
+            return "redirect:/work/worker/main";
         }
 
         // 세션에서 안전 검사와 회원 정보 추출
-        WorkSafetyCheck workSafetyCheck = (WorkSafetyCheck) session.getAttribute("WorkSafetyCheck");
         Member member = (Member) session.getAttribute("member");
 
         // 작업 중단 요청 정보 객체 초기화 및 설정
@@ -155,12 +126,12 @@ public class StopWorkController extends CommonController{
         workStopReqModify.setUserid(StringUtil.objectToString(member.getUserid()));
         workStopReqModify.setSiteCode(StringUtil.objectToString(member.getsiteCode()));
         workStopReqModify.setIssueGubun(StringUtil.objectToString(request.getParameter("issueGubun")));
-        workStopReqModify.setLocation(StringUtil.objectToString(request.getParameter("location")));
+        workStopReqModify.setLocation(StringUtil.objectToString(""));
         workStopReqModify.setReqReason(StringUtil.objectToString(request.getParameter("reqReason")));
         workStopReqModify.setImgPaths(StringUtil.objectToString(request.getParameter("imgPaths")));
         workStopReqModify.setState("Y");
         workStopReqModify.setIp(StringUtil.objectToString(request.getRemoteAddr()));
-        workStopReqModify.setWsrSeq(StringUtil.objectToString(workSafetyCheck.getWorkSeq()));
+        workStopReqModify.setWsrSeq(StringUtil.objectToString(""));
 
         // 작업 중단 요청 정보를 서비스로 전달 및 처리
         workService.workStopReqModify(workStopReqModify);

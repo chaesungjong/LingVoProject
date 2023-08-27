@@ -21,13 +21,9 @@ import com.castlebell.lingvo.util.StringUtil;
 @RequestMapping("board")
 public class BoardController {
 
+	@Autowired
+	private BoardService boardservice;
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
-	private final BoardService boardservice;
-
-    @Autowired
-    public BoardController(BoardService boardservice) {
-        this.boardservice = boardservice;
-    }
 
 	/**
 	 * 공지사항 정보 가져오기

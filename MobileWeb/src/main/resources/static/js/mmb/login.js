@@ -14,6 +14,12 @@ $(document).ready(function() {
         alert('로그인 정보를 정확히 입력해주세요.');
         return;
       }
+
+      if(forbiddenWordsCheck(username) || forbiddenWordsCheck(password)){
+
+        alert('금지된 단어가 포함되어 있습니다.');
+        return;
+      }
       // 로그인 시도
       $("#frmLogin").prop("action", "/mmb/loginProcess.do");
       $("#frmLogin").submit();

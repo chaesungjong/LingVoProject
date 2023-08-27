@@ -28,7 +28,7 @@ $(document).ready(function() {
       $("#next").removeClass("btn_ok_s").addClass("btn_ok_stop");
 
       countClick++;
-      if (workClassMsgList.length != countClick) {
+      if (workClassMsgList.length != countClick )  {
         updateUI(workClassMsgList[countClick]);
       } else {
            // 다음 작업 단계 함수 설정
@@ -36,7 +36,13 @@ $(document).ready(function() {
            // 알림 메시지 텍스트 설정
            var alertMessage = '일일 안전예방활동을<br />확인하였습니다.<br /><br /> 관리자에게 <span class="txt_point">전송</span> 합니다. ';
            // 사용자에게 알림 팝업 표시
-           openAlert(alertMessage, nextStep);
+           openAlert(alertMessage, nextStep, 
+            function() {
+              $("#next").removeClass("btn_ok_stop").addClass("btn_ok_s");
+              isLinkDisabled = true;
+              countClick--;
+              }
+            );
            return;
       }
   });
@@ -53,11 +59,11 @@ function updateUI(item) {
   $("#click").text(item.step);
   $("#total").text(item.stepTotal);
   typeAnimation($("#title"), item.message);
-    // 2초 후 버튼을 다시 활성화
-    setTimeout(() => {
-      $("#next").removeClass("btn_ok_stop").addClass("btn_ok_s");
-      isLinkDisabled = true; // 버튼 활성화
-  }, 500);
+  //   // 2초 후 버튼을 다시 활성화
+  //   setTimeout(() => {
+  //     $("#next").removeClass("btn_ok_stop").addClass("btn_ok_s");
+  //     isLinkDisabled = true; // 버튼 활성화
+  // }, 500);
 }
 
 /**
@@ -76,6 +82,9 @@ function typeAnimation($element, message, speed = 50) {
           $element.append(message.charAt(i));
           i++;
           setTimeout(type, speed);
+      }else{
+          $("#next").removeClass("btn_ok_stop").addClass("btn_ok_s");
+          isLinkDisabled = true; // 버튼 활성화
       }
   }
 
