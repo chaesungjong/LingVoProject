@@ -1,4 +1,4 @@
-package com.castlebell.lingvo.work.controller;
+package com.castlebell.lingvo.work.controller.manager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

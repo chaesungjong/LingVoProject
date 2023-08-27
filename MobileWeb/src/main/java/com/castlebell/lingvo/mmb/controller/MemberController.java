@@ -57,7 +57,7 @@ public class MemberController extends CommonController{
 
 		// 사용자 입력 정보 추출
 		String userid = (request.getHeader("userID") != null) ? request.getHeader("userID") : request.getParameter("userid");
-		String pwd = (request.getHeader("pwd") != null) ? request.getHeader("pwd") : request.getParameter("pwd");
+		String pwd = (request.getHeader("pwd") != null) ? request.getHeader("pwd") : SHA256Util.hashWithSHA256(request.getParameter("pwd"));
 		String userIP = request.getRemoteAddr();
 		String clientType = request.getHeader("User-Agent");
 
@@ -70,7 +70,7 @@ public class MemberController extends CommonController{
 		RequestLogin requestLogin = new RequestLogin();
 
 		requestLogin.setUserid(userid);
-		requestLogin.setUserpw(SHA256Util.hashWithSHA256(pwd));
+		requestLogin.setUserpw(pwd);
 		requestLogin.setIp(userIP);
 		requestLogin.setClienttype(clientType);
 
@@ -98,10 +98,8 @@ public class MemberController extends CommonController{
 		String grade = StringUtil.objectToString(member.getGrade());
 
 
-		if(grade.contains("S")){
-			return "redirect:/work/city/main";// 정부 관리자, 링보 관리자
-		}else if(grade.contains("C")){
-			return "redirect:/work/manager/main";// 기업 관리자
+		if(grade.contains("S") || grade.contains("C") ){
+			return "redirect:/work/manager/main";// 정부 관리자, 링보 관리자
 		}else if(grade.contains("U")){
 			return "redirect:/work/worker/main";// 근로자
 		}else{

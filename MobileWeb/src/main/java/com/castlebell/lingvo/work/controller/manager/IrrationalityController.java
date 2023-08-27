@@ -1,4 +1,4 @@
-package com.castlebell.lingvo.work.controller;
+package com.castlebell.lingvo.work.controller.manager;
 
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;

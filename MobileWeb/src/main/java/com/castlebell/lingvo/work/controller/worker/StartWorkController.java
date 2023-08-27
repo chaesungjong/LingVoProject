@@ -136,6 +136,10 @@ public class StartWorkController extends CommonController {
             return "redirect:/work/worker/main";
         }
 
+        
+        Member member = (Member) session.getAttribute("member");
+        member.setTodayWorkYN("Y");
+
         return StartWorkMapping + "/workCheckStepConfirm";
     }
 

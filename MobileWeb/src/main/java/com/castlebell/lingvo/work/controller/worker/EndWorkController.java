@@ -62,6 +62,35 @@ public class EndWorkController extends CommonController {
 		if(checkTodayWork(session, redirectAttributes) == false){
             return "redirect:/work/worker/main";
         }
+		
+		
+		Member member = (Member) session.getAttribute("member");
+
+		// 리뷰 수정 정보 객체 초기화 및 설정
+		WorkReviewModify workReviewModify = new WorkReviewModify();
+		workReviewModify.setGubun("regist");
+		workReviewModify.setUserid(StringUtil.objectToString(member.getUserid()));
+		workReviewModify.setSiteCode(StringUtil.objectToString(member.getsiteCode()));
+		workReviewModify.setReviewClass("YES");
+		workReviewModify.setReviewGubun("");
+		workReviewModify.setLocation("");
+		workReviewModify.setContent("");
+		workReviewModify.setImgPaths("");
+		workReviewModify.setState("Y");
+		workReviewModify.setIp(StringUtil.objectToString(request.getRemoteAddr()));
+		workReviewModify.setWrSeq("");
+
+		// 리뷰 수정 정보를 서비스로 전달 및 처리
+		workService.workReviewModify(workReviewModify);
+
+		// 처리 결과에 따른 메시지 설정
+		if (workReviewModify != null) {
+			String errMsg = workReviewModify.getErrMsg();
+			if (workReviewModify.getRetVal() == 0) {
+				errMsg = "감사합니다.<br/>개선 요청 사항이<br/>등록되었습니다.<br/>현장 확인 후<br/><span class='txt_point'>즉시 조치하도록 하겠습니다.</span>";
+			}
+			model.addAttribute("Msg", errMsg);
+		}
 
 		session.setAttribute("WorkSafetyCheck", null);
 	    return EndWorkMapping + "/workReviewEnd";

@@ -16,26 +16,44 @@
 		<put-attribute name="body"   value="/WEB-INF/tiles/view/mmb/login.jsp" /> 
 
 	</definition>
-	
+	<!-- 공통 탬플릿 -->
 	<definition name="*/*" extends="layout.basic">
-		<put-attribute name="header"  value="/WEB-INF/tiles/view/cmm/header.jsp" />
-		<put-attribute name="navibar" value="/WEB-INF/tiles/view/cmm/navibar.jsp" />
-		<put-attribute name="footer"  value="/WEB-INF/tiles/view/cmm/footer.jsp" />
+		<put-attribute name="header"  value="/WEB-INF/tiles/view/cmm/worker/header.jsp" />
+		<put-attribute name="navibar" value="/WEB-INF/tiles/view/cmm/worker/navibar.jsp" />
+		<put-attribute name="footer"  value="/WEB-INF/tiles/view/cmm/worker/footer.jsp" />
+		<put-attribute name="manager_footer"  value="/WEB-INF/tiles/view/cmm/manager/footer.jsp" />
 		<put-attribute name="body"    value="/WEB-INF/tiles/view/{1}/{2}.jsp" />
 	</definition>
-
-	<definition name="*/*/*" extends="layout.basic">
-		<put-attribute name="header"  value="/WEB-INF/tiles/view/cmm/header.jsp" />
-		<put-attribute name="navibar" value="/WEB-INF/tiles/view/cmm/navibar.jsp" />
-		<put-attribute name="footer"  value="/WEB-INF/tiles/view/cmm/footer.jsp" />
-		<put-attribute name="body"    value="/WEB-INF/tiles/view/{1}/{2}/{3}.jsp" />
+	<!-- 작업자 탬플릿 -->
+	<definition name="work/worker/*" extends="layout.basic">
+		<put-attribute name="header"  value="/WEB-INF/tiles/view/cmm/worker/header.jsp" />
+		<put-attribute name="navibar" value="/WEB-INF/tiles/view/cmm/worker/navibar.jsp" />
+		<put-attribute name="footer"  value="/WEB-INF/tiles/view/cmm/worker/footer.jsp" />
+		<put-attribute name="body"    value="/WEB-INF/tiles/view/work/worker/{1}.jsp" />
 	</definition>
 
-	<definition name="*/*/*/*" extends="layout.basic">
-		<put-attribute name="header"  value="/WEB-INF/tiles/view/cmm/header.jsp" />
-		<put-attribute name="navibar" value="/WEB-INF/tiles/view/cmm/navibar.jsp" />
-		<put-attribute name="footer"  value="/WEB-INF/tiles/view/cmm/footer.jsp" />
-		<put-attribute name="body"    value="/WEB-INF/tiles/view/{1}/{2}/{3}/{4}.jsp" />
+	<definition name="work/worker/*/*" extends="layout.basic">
+		<put-attribute name="header"  value="/WEB-INF/tiles/view/cmm/worker/header.jsp" />
+		<put-attribute name="navibar" value="/WEB-INF/tiles/view/cmm/worker/navibar.jsp" />
+		<put-attribute name="footer"  value="/WEB-INF/tiles/view/cmm/worker/footer.jsp" />
+		<put-attribute name="body"    value="/WEB-INF/tiles/view/work/worker/{1}/{2}.jsp" />
 	</definition>
+	<!-- 작업자 탬플릿 끝 -->
+	
+	<!-- 관리자 탬플릿 -->
+	<definition name="work/manager/*" extends="layout.basic">
+		<put-attribute name="header"  value="/WEB-INF/tiles/view/cmm/manager/header.jsp" />
+		<put-attribute name="navibar" value="/WEB-INF/tiles/view/cmm/manager/navibar.jsp" />
+		<put-attribute name="manager_footer"  value="/WEB-INF/tiles/view/cmm/manager/footer.jsp" />
+		<put-attribute name="body"    value="/WEB-INF/tiles/view/work/manager/{1}.jsp" />
+	</definition>
+
+	<definition name="work/manager/*/*" extends="layout.basic">
+		<put-attribute name="header"  value="/WEB-INF/tiles/view/cmm/manager/header.jsp" />
+		<put-attribute name="navibar" value="/WEB-INF/tiles/view/cmm/manager/navibar.jsp" />
+		<put-attribute name="manager_footer"  value="/WEB-INF/tiles/view/cmm/manager/footer.jsp" />
+		<put-attribute name="body"    value="/WEB-INF/tiles/view/work/manager/{1}/{2}.jsp" />
+	</definition>
+	<!-- 관리자 탬플릿 끝-->
 	
 </tiles-definitions>

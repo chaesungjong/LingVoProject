@@ -9,7 +9,6 @@ import com.castlebell.lingvo.board.dao.domain.request.NewsFilter;
 import com.castlebell.lingvo.board.dao.domain.response.Board;
 import com.castlebell.lingvo.board.service.BoardService;
 import com.castlebell.lingvo.cmm.CommonController;
-import com.castlebell.lingvo.cmm.session.Member;
 import com.castlebell.lingvo.work.service.WorkService;
 import com.castlebell.lingvo.mmb.dao.domain.request.RequestLogin;
 import org.slf4j.Logger;
@@ -54,34 +53,8 @@ public class WorkController extends CommonController {
         if (!checkLogin(session, redirectAttributes)) {
             return "redirect:/mmb/login";
         }
-        
-		RequestLogin requestLogin = (RequestLogin) session.getAttribute("autoLogin");
 
-        if(requestLogin != null){
-            try{
-                ObjectMapper mapper = new ObjectMapper();
-                String jsonString = mapper.writeValueAsString(requestLogin);
-                model.addAttribute("autoLogin", jsonString);
-            }catch(Exception e){
-                logger.error("제이슨 파일 파싱 실패", e);
-            }
-        }
-
-        if (errMsg != null && !errMsg.isEmpty()) {
-            model.addAttribute("errMsg", errMsg);
-        }
-
-        NewsFilter notice = new NewsFilter();
-		notice.setGubun("TV");
-		notice.setPageNo("");
-		notice.setPageSize("");
-		notice.setEdate("");
-		notice.setEdate("");
-		notice.setSearchGubun("");
-		notice.setSearchVal("");
-
-		List<Board> noticeList = boardservice.getboardList(notice);
-        model.addAttribute("noticeList", noticeList);
+        setUserInformation(errMsg, model, session, redirectAttributes);
         
         return "work/worker/main";
     }
@@ -98,60 +71,57 @@ public class WorkController extends CommonController {
      * @return 시공 관리자 메인 페이지 경로
      */
     @RequestMapping(value = "/manager/main", method = RequestMethod.GET)
-    public String managerMain(
-            @ModelAttribute("errMsg") String errMsg,
-            HttpServletRequest request, Model model,
-            HttpSession session, RedirectAttributes redirectAttributes) {
+    public String managerMain( @ModelAttribute("errMsg") String errMsg, HttpServletRequest request, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
 
         // 로그인 상태 체크
         if (!checkLogin(session, redirectAttributes)) {
             return "redirect:/mmb/login";
         }
 
-        Member member = (Member) session.getAttribute("member");
-        logger.debug("main 진입 : " + member.toString());
-
-        model.addAttribute("name", member.getName() + " 님 환영합니다.");
-
-        if (errMsg != null && !errMsg.isEmpty()) {
-            model.addAttribute("errMsg", errMsg);
-        }
-
+        setUserInformation(errMsg, model, session, redirectAttributes);
         return "work/manager/main";
     }
 
     /**
-     * 시청 관리자 메인 화면을 반환한다.
-     * 
+     * 사용자 정보와 관련된 데이터를 모델에 설정합니다.
      * @param errMsg 오류 메시지
-     * @param request HttpServletRequest
-     * @param model Model
-     * @param session HttpSession
-     * @param redirectAttributes RedirectAttributes
-     * @return 시청 관리자 메인 페이지 경로
+     * @param model 모델 객체
+     * @param session 세션 객체
+     * @param redirectAttributes 리다이렉트 속성
      */
-    @RequestMapping(value = "/city/main", method = RequestMethod.GET)
-    public String cityMain(
-            @ModelAttribute("errMsg") String errMsg,
-            HttpServletRequest request, Model model,
-            HttpSession session, RedirectAttributes redirectAttributes) {
-
-        // 로그인 상태 체크
-        if (!checkLogin(session, redirectAttributes)) {
-            return "redirect:/mmb/login";
+    private void setUserInformation(String errMsg, Model model, HttpSession session, RedirectAttributes redirectAttributes){
+        
+        // 세션에서 자동 로그인 정보 가져오기
+        RequestLogin requestLogin = (RequestLogin) session.getAttribute("autoLogin");
+        
+        // 자동 로그인 정보가 있을 경우, JSON 형태로 모델에 추가
+        if(requestLogin != null){
+            try{
+                ObjectMapper mapper = new ObjectMapper();
+                String jsonString = mapper.writeValueAsString(requestLogin);
+                model.addAttribute("autoLogin", jsonString);
+            } catch(Exception e){
+                logger.error("JSON 변환 실패", e);
+            }
         }
-
-        Member member = (Member) session.getAttribute("member");
-        logger.debug("main 진입 : " + member.toString());
-
-        model.addAttribute("name", member.getName() + " 님 환영합니다.");
-
+        
+        // 오류 메시지가 있을 경우, 모델에 추가
         if (errMsg != null && !errMsg.isEmpty()) {
             model.addAttribute("errMsg", errMsg);
         }
-
-        return "work/city/main";
+        
+        // TV 관련 공지사항 필터 설정
+        NewsFilter notice = new NewsFilter();
+        notice.setGubun("TV");
+        // 다른 필터 값들은 현재 기본값으로 설정됨. 필요시 수정이 필요합니다.
+        notice.setPageNo("");
+        notice.setPageSize("");
+        notice.setEdate("");
+        notice.setSearchGubun("");
+        notice.setSearchVal("");
+        
+        // TV 관련 공지사항 목록 가져오기 및 모델에 추가
+        List<Board> noticeList = boardservice.getboardList(notice);
+        model.addAttribute("noticeList", noticeList);
     }
-
-
 }

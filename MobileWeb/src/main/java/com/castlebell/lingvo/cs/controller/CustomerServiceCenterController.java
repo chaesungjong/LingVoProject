@@ -41,13 +41,14 @@ public class CustomerServiceCenterController extends CommonController{
         
         logger.debug("emrContact 진입");
         
-        if(checkTodayWork(session, redirectAttributes) == false){
-            return "redirect:/work/worker/main";
-        }
+        if(checkLogin( session,redirectAttributes) == false ) {
+            return "redirect:/mmb/login"; 
+		}
 
-        Member member = (Member) session.getAttribute("member");
+		Member member = (Member) session.getAttribute("member");
 		List<EmergencyInfo> list = customerServiceCenterService.getEmergencyContactList(session,member.getsiteCode());
 		model.addAttribute("list", list);
+        
 	    return "cs/emrContact";
 	}
 
