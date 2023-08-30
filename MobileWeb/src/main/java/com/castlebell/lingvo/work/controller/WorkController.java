@@ -112,7 +112,7 @@ public class WorkController extends CommonController {
         
         // TV 관련 공지사항 필터 설정
         NewsFilter notice = new NewsFilter();
-        notice.setGubun("TV");
+        notice.setGubun("NewsMain");
         // 다른 필터 값들은 현재 기본값으로 설정됨. 필요시 수정이 필요합니다.
         notice.setPageNo("");
         notice.setPageSize("");

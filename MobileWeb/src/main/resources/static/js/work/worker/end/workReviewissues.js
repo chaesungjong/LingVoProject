@@ -41,6 +41,11 @@ function workReviewEndPicturePlus(){
         checkedValues.push($(this).val());
     });
 
+    if(checkedValues == 0){
+        alert("이슈를 선택해주세요.");
+        return;
+    }
+
     // 사용자 체크한 것을 로컬스토리지에 저장
     localStorage.setItem("issuesList", checkedValues);
     // 다음 작업 단계 함수 설정

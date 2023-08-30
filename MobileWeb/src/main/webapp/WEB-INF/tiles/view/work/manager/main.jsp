@@ -41,13 +41,13 @@
     </a>
   </div>
   <div class="main_menu2 mt20">
-    <a href="">
+    <a href="/work/manager/irrationality/irrationality">
     <div class="btn_main_menu2">
       <div class="icon_menu2"><img src="/assets/admin/icon_main03.png" alt=""></div>
       <div class="menu_txt2">불합리 적발</div>
     </div>
     </a>
-    <a href="workReview.html">
+    <a href="/work/manager/stop/workReview">
     <div class="btn_main_menu2">
       <div class="icon_menu2"><img src="/assets/admin/icon_main04.png" alt=""></div>
       <div class="menu_txt2">작업 후기</div>

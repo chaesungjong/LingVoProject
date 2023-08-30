@@ -21,16 +21,8 @@ import com.castlebell.lingvo.work.dao.domain.response.workIssueMsgListResponse;
 public class WorkServiceImpl implements WorkService{
 
     // WorkMapper 인터페이스를 통한 DB 작업
-    private final WorkMapper workMapper;
-
-    /**
-     * WorkServiceImpl 생성자
-     * @param workMapper DB 작업을 위한 매퍼
-     */
     @Autowired
-    public WorkServiceImpl(WorkMapper workMapper) {
-        this.workMapper = workMapper;
-    }
+    private  WorkMapper workMapper;
 
     /**
      * 사이트 정보 조회

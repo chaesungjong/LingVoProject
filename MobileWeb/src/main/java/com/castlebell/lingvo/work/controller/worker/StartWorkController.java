@@ -19,10 +19,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.castlebell.lingvo.cmm.CommonController;
 import com.castlebell.lingvo.cmm.session.Member;
 import com.castlebell.lingvo.cmm.session.WorkSafetyCheck;
-import com.castlebell.lingvo.util.StringUtil;
 import com.castlebell.lingvo.work.dao.domain.request.WorkClassMsgListRequest;
 import com.castlebell.lingvo.work.dao.domain.response.WorkClassMsgListResponse;
 import com.castlebell.lingvo.work.service.WorkService;
+import com.castlebell.lingvo.work.util.StringUtil;
 /**
  * 작업 시작과 관련된 기능들을 제공하는 컨트롤러
  */

@@ -13,8 +13,9 @@ import com.castlebell.lingvo.cmm.CommonController;
 import com.castlebell.lingvo.cmm.session.Member;
 import com.castlebell.lingvo.mmb.dao.domain.request.RequestLogin;
 import com.castlebell.lingvo.mmb.service.MemberService;
-import com.castlebell.lingvo.util.SHA256Util;
-import com.castlebell.lingvo.util.StringUtil;
+import com.castlebell.lingvo.work.util.SHA256Util;
+import com.castlebell.lingvo.work.util.StringUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

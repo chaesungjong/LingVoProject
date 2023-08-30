@@ -1,4 +1,4 @@
-package com.castlebell.lingvo.util;
+package com.castlebell.lingvo.work.util;
 
 public class StringUtil {
     

@@ -8,6 +8,7 @@
         <mapper resource="mybatis/xml/mapper/mmbMapper.xml"/>
         <mapper resource="mybatis/xml/mapper/workMapper.xml"/>
         <mapper resource="mybatis/xml/mapper/boardMapper.xml"/>
+        <mapper resource="mybatis/xml/mapper/managerMapper.xml"/>
         <mapper resource="mybatis/xml/mapper/csMapper.xml"/>
     </mappers>
 </configuration>

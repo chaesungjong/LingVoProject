@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.castlebell.lingvo.cmm.session.Member;
 import com.castlebell.lingvo.mmb.dao.mmbMapper;
 import com.castlebell.lingvo.mmb.dao.domain.request.RequestLogin;
-import com.castlebell.lingvo.util.StringUtil;
+import com.castlebell.lingvo.work.util.StringUtil;
 
 @Service
 public class MemberServiceImpl implements MemberService {

@@ -26,31 +26,23 @@ import com.castlebell.lingvo.work.service.WorkService;
 @Controller
 @RequestMapping("work/manager/irrationality")
 public class IrrationalityController extends CommonController {
-    
-    private static final Logger logger = LoggerFactory.getLogger(IrrationalityController.class);
-    private final WorkService workService;
 
-    /**
-     * 생성자
-     * @param workService 작업 서비스
-     */
     @Autowired
-    public IrrationalityController(WorkService workService) {
-        this.workService = workService;
-    }
+    private WorkService workService;
+    private static final Logger logger = LoggerFactory.getLogger(IrrationalityController.class);
 
     /**
      * 부적합 적발 메인
      * @return 페이지 경로
      */
-    @RequestMapping(value = "/exposure", method = RequestMethod.GET)
-    public String exposure(HttpServletRequest request, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+    @RequestMapping(value = "/irrationality", method = RequestMethod.GET)
+    public String irrationality(HttpServletRequest request, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
         logger.debug("exposure 진입");
         if (!checkLogin(session, redirectAttributes)) { 
             return "redirect:/mmb/login"; 
         }
 
-        return IrrationalityMapping + "/exposure";
+        return IrrationalityMapping + "/irrationality";
     }
 
     /**

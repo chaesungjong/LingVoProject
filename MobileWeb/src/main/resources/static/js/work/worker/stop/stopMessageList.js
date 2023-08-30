@@ -23,6 +23,11 @@ function handleNextButtonClick() {
     // 체크된 라디오 버튼 값 수집
     const checkedValues = collectCheckedValues();
 
+    if(collectCheckedValues() == 0){
+        alert("이슈를 선택해주세요.");
+        return;
+    }
+
     // 사용자가 선택한 이슈를 로컬 스토리지에 저장
     localStorage.setItem("issuesList", checkedValues);
     const issueCode = localStorage.getItem("issueCode");

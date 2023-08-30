@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.castlebell.lingvo.work.dao.ManagerMapper">
+  <!-- 안전예방활동체크 질문 리스트 Start -->      
+  <resultMap id="statMySiteInfoWorkAllMap" type="com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoWorkAllResponse">
+      <result property="nWork"              column="nWork" />
+      <result property="nSafeEnd"           column="nSafeEnd" />
+      <result property="nWorkStopRequest"   column="nWorkStopRequest" />
+  </resultMap>
+  <select id="statMySiteInfoWorkAllResponse" resultMap="statMySiteInfoWorkAllMap" statementType="CALLABLE">
+      { call [dbo].[statMySiteInfo](
+          #{gubun},
+          #{userid},
+          #{grade},
+          #{svgCode},
+          #{constCode},
+          #{siteCode},
+          #{regionName},
+          #{compnayName},
+          #{sDate},
+          #{eDate}
+      )}
+  </select>
+
+  <resultMap id="statMySiteInfoRegionAllMap" type="com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoRegionAllResponse">
+      <result property="siteSubAddr2"       column="siteSubAddr2" />
+      <result property="nWork"              column="nWork" />
+      <result property="nSafeEnd"           column="nSafeEnd" />
+      <result property="nWorkStopRequest"   column="nWorkStopRequest" />
+  </resultMap>
+  <select id="statMySiteInfoRegionAllResponse" resultMap="statMySiteInfoRegionAllMap" statementType="CALLABLE">
+      { call [dbo].[statMySiteInfo](
+          #{gubun},
+          #{userid},
+          #{grade},
+          #{svgCode},
+          #{constCode},
+          #{siteCode},
+          #{regionName},
+          #{compnayName},
+          #{sDate},
+          #{eDate}
+    )}
+  </select>
+  <!-- 안전예방활동체크 질문 리스트 End -->
+    <resultMap id="statMySiteInfoRegionSitellMap" type="com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoRegionSiteResponse">
+      <result property="siteSubAddr2"       column="siteSubAddr2" />
+      <result property="nWork"              column="nWork" />
+      <result property="nSafeEnd"           column="nSafeEnd" />
+      <result property="nWorkStopRequest"   column="nWorkStopRequest" />
+  </resultMap>
+  <select id="statMySiteInfoRegionSiteResponse" resultMap="statMySiteInfoRegionSitellMap" statementType="CALLABLE">
+      { call [dbo].[statMySiteInfo](
+          #{gubun},
+          #{userid},
+          #{grade},
+          #{svgCode},
+          #{constCode},
+          #{siteCode},
+          #{regionName},
+          #{compnayName},
+          #{sDate},
+          #{eDate}
+    )}
+  </select>
+
+  <!-- 안전예방활동체크 질문 리스트 End -->
+    <resultMap id="statMySiteInfoRegionCompanyResponseMap" type="com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoRegionCompanyResponse">
+        <result property="siteCode"           column="siteCode" />
+        <result property="companyName"        column="companyName" />
+        <result property="nWork"              column="nWork" />
+        <result property="nSafeEnd"           column="nSafeEnd" />
+        <result property="nWorkStopRequest"   column="nWorkStopRequest" />
+    </resultMap>
+  <select id="statMySiteInfoRegionCompanyResponse" resultMap="statMySiteInfoRegionCompanyResponseMap" statementType="CALLABLE">
+      { call [dbo].[statMySiteInfo](
+          #{gubun},
+          #{userid},
+          #{grade},
+          #{svgCode},
+          #{constCode},
+          #{siteCode},
+          #{regionName},
+          #{compnayName},
+          #{sDate},
+          #{eDate}
+    )}
+  </select>
+</mapper>

@@ -19,6 +19,7 @@ public class CommonController {
 	protected final String EndWorkMapping = "work/worker/end";
 	protected final String IrrationalityMapping = "work/manager/irrationality";
 	protected final String FieldInformationMapping = "work/manager/fieldinformation";
+	protected final String StopMapping = "work/manager/stop";
 
 	@Autowired
 	private MemberService memberService;

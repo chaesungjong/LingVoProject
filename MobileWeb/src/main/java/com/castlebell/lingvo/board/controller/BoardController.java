@@ -18,7 +18,7 @@ import com.castlebell.lingvo.board.dao.domain.response.Board;
 import com.castlebell.lingvo.board.service.BoardService;
 import com.castlebell.lingvo.cmm.CommonController;
 import com.castlebell.lingvo.cmm.session.Member;
-import com.castlebell.lingvo.util.StringUtil;
+import com.castlebell.lingvo.work.util.StringUtil;
 
 /**
  * 공지사항 관련 컨트롤러

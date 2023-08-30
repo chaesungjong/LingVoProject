@@ -4,7 +4,7 @@
 </div>
 
 <div class="main_menu">
-  <a href="/work/manager/fieldinformation/fieldinformationlist">
+  <a href="/work/manager/fieldinformation/myFieldInfoToday">
   <div class="btn_main_menu">
     <div class="icon_menu"><img src="/assets/admin/icon_all.png" alt=""></div>
     <div class="menu_txt">전체 보기</div>
