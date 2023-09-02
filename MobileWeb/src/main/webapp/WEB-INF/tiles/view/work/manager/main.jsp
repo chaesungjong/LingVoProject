@@ -41,7 +41,7 @@
     </a>
   </div>
   <div class="main_menu2 mt20">
-    <a href="/work/manager/irrationality/irrationality">
+    <a href="/work/manager/irrationality/Mainirrationality">
     <div class="btn_main_menu2">
       <div class="icon_menu2"><img src="/assets/admin/icon_main03.png" alt=""></div>
       <div class="menu_txt2">불합리 적발</div>

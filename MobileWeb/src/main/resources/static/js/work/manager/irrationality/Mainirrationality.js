@@ -1,4 +1,4 @@
-$(document).ready(initializeEvents);
+$(document).ready(initializeEvents());
 
 /**
  * 페이지 로드 완료 후 실행되는 초기화 함수
@@ -13,10 +13,7 @@ function initializeEvents() {
  */
 function handleMainMenuButtonClick() {
     // 메뉴 텍스트와 메뉴 코드를 로컬 스토리지에 저장
-    var menuText = $(this).find('.menu_txt').text();
-    localStorage.setItem("issue", menuText);
-    localStorage.setItem("issueCode", $(this).attr("value"));
-    
+    localStorage.setItem("illegalClass", $(this).attr("value"));
     // 이슈 구분 값에 따라 작업자의 중지 메시지 목록 페이지로 이동
     location.href = "/work/manager/irrationality/exposurePicturePlus";
 }

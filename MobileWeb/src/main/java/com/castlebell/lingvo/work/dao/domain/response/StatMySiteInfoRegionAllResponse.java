@@ -9,6 +9,8 @@ public class StatMySiteInfoRegionAllResponse implements Serializable {
     private String nWork;
     private String nSafeEnd;
     private String nWorkStopRequest;
+    private String constCode;
+    private String constName;
 
     public String getSiteSubAddr2() {
         return siteSubAddr2;
@@ -42,13 +44,26 @@ public class StatMySiteInfoRegionAllResponse implements Serializable {
         this.nWorkStopRequest = nWorkStopRequest;
     }
 
+    public String getConstCode() {
+        return constCode;
+    }
+
+    public void setConstCode(String constCode) {
+        this.constCode = constCode;
+    }
+
+    public String getConstName() {
+        return constName;
+    }
+
+    public void setConstName(String constName) {
+        this.constName = constName;
+    }
+
     @Override
     public String toString() {
-        return "StatMySiteInfoRegionllResponse{" +
-                "siteSubAddr2='" + siteSubAddr2 + '\'' +
-                ", nWork='" + nWork + '\'' +
-                ", nSafeEnd='" + nSafeEnd + '\'' +
-                ", nWorkStopRequest='" + nWorkStopRequest + '\'' +
-                '}';
+        return "StatMySiteInfoRegionAllResponse [siteSubAddr2=" + siteSubAddr2 + ", nWork=" + nWork + ", nSafeEnd="
+                + nSafeEnd + ", nWorkStopRequest=" + nWorkStopRequest + ", constCode=" + constCode + ", constName="
+                + constName + "]";
     }
 }

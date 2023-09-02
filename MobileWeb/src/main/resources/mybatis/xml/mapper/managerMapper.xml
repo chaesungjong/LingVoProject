@@ -87,4 +87,31 @@
           #{eDate}
     )}
   </select>
+
+  <!-- 안전예방활동체크 질문 리스트 End -->
+  <resultMap id="statMySiteInfoWorkStopResponseMap" type="com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoWorkStopResponse">
+      <result property="name"      column="name" />
+      <result property="reqReason" column="reqReason" />
+  </resultMap>
+  <select id="statMySiteInfoWorkStopResponse" resultMap="statMySiteInfoWorkStopResponseMap" statementType="CALLABLE">
+      { call [dbo].[statMySiteInfo](
+          #{gubun},
+          #{userid},
+          #{grade},
+          #{svgCode},
+          #{constCode},
+          #{siteCode},
+          #{regionName},
+          #{compnayName},
+          #{sDate},
+          #{eDate}
+    )}
+  </select>
+
+  <select id="illegalInfoModify" statementType="CALLABLE">
+    { #{RETVAL, mode=OUT, jdbcType=INTEGER} = call [dbo].[illegalInfoModify](#{gubun}, #{userid}, #{siteCode}, #{illegalClass},  
+          #{illegalGubun},  #{illegalUserid},  #{location},  #{content},  #{imgPaths},  #{state},  #{ip},  #{ilgSeq},  #{errMsg, mode=OUT, jdbcType=VARCHAR} ) 
+    }
+  </select>
+  
 </mapper>

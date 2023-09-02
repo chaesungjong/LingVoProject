@@ -15,12 +15,8 @@ import com.castlebell.lingvo.work.util.StringUtil;
 @Service
 public class MemberServiceImpl implements MemberService {
 
-    private final mmbMapper mrMapper;
-
     @Autowired
-    public MemberServiceImpl(mmbMapper mrMapper) {
-        this.mrMapper = mrMapper;
-    }
+    private  mmbMapper mrMapper;
 
     /**
      * 로그인 처리

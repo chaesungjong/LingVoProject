@@ -26,13 +26,10 @@ import org.slf4j.LoggerFactory;
 @RequestMapping("mmb")
 public class MemberController extends CommonController{
 	
+	@Autowired
+    private  MemberService memberService;
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-    private final MemberService memberService;
 
-    @Autowired
-    public MemberController(MemberService memberService) {
-        this.memberService = memberService;
-    }
 
 	/**
 	 * 로그인 화면

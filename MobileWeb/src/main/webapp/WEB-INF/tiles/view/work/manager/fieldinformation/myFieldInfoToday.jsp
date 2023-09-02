@@ -3,7 +3,7 @@
 <div id="container">		
   <div class="info_wrap">			
     <div class="txt_h1">전체보기</div>
-    <div class="txt_h4 mb30">2023.06.23 (금) Today</div>
+    <div class="txt_h4 mb30">${date}</div>
   </div>
   <div class="today_wrap mt30">			
     <div class="today_info">
@@ -24,10 +24,9 @@
     </div>
 
     <div class="txt_h5 mt30">
-＊ 총 근로자는 금일 QR코드 인증된 근로자 수 입니다.<br />
-＊ 안전 활동 완료 조건은 AI 전화 응답 완료입니다.<br />
-＊ 불합리 적발 과거 내역은 메인 화면 불합리 적발에서 확인 가능합니다.	
-
+      ＊ 총 근로자는 금일 QR코드 인증된 근로자 수 입니다.<br />
+      ＊ 안전 활동 완료 조건은 AI 전화 응답 완료입니다.<br />
+      ＊ 불합리 적발 과거 내역은 메인 화면 불합리 적발에서 확인 가능합니다.	
     </div>
   </div>			
   

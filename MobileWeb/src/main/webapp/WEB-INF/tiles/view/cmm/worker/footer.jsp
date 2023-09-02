@@ -4,7 +4,7 @@
 <c:set var="currentURL" value="${requestScope['javax.servlet.forward.request_uri']}" />
 <c:if test="${fn:contains(currentURL, '/work/worker/main') or fn:contains(currentURL, '/board/noticeBoard') or fn:contains(currentURL, '/cs/emrContact')  or fn:contains(currentURL, '/board/videoBoard')  or fn:contains(currentURL, '/cs/faq') }">
 	<div id="footers">	
-		<a href="/work/main">
+		<a href="/work/worker/main">
 			<div class="mn_wrap">
 				<div class="icon_mn"><img src="/assets/icon_mn01_home_on.png" alt=""></div>
 				<div class="txt_mn">home</div>

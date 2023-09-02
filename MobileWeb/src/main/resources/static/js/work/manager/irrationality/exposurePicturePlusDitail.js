@@ -1,54 +1,29 @@
 $(document).ready(function() {
+    // 로컬 스토리지에서 저장된 값을 변수에 할당
+    var issuesImageList = localStorage.getItem("issuesImageList");
+    var illegalClass    = localStorage.getItem("illegalClass");
+    // 가져온 값들을 각각의 HTML 요소에 할당
+    $("#imgPaths").val(issuesImageList);
+    $("#illegalClass").val(illegalClass);
 
-    //부합리 종류 선택
-    var exposure = localStorage.getItem("exposure");
-    $("#exposure").val(exposure);
-
-    if(exposure == "근로자 불합리") {
-        $("#workOrlocationTh").text("위반자 ID");
+    if($("#illegalClass").val() == "worker"){
+        $("#worker").show();
+        $("#location").hide();
     }else{
-        $("#workOrlocationTh").text("위치");
+        $("#location").show();
+        $("#worker").hide();
     }
 
-    //캡쳐 이미지 가져 오고 세팅 하기
-    $("#imageList").val(localStorage.getItem("issuesImageList"));
-    var imageListArray = $("#imageList").val() ? $("#imageList").val().split(",") : [];
+    // 문제 리스트와 이미지 리스트를 배열로 변환
+    var imageListArray = issuesImageList ? issuesImageList.split(",") : [];
 
-    for(var i = 0; i < imageListArray.length; i++) {
-        $("#imgDiv").append("<img src='" + imageListArray[i] + "' width='100px' height='100px'>");
-    }
-
-    $("#next").click(function() {
-
-        if(validateForm()){
-            $('#Comfirm').submit();
-        }
+    // 이미지 리스트의 내용을 페이지에 출력
+    imageListArray.forEach(function(image) {
+        $("#imgDiv").append("<img src='" + image + "' width='100px' height='100px'>");
     });
-    
+
+    // '다음' 버튼을 클릭하면 Comfirm 폼 제출
+    $("#next").click(function() {
+         $('#Comfirm').submit();
+    });
 });
-
-function validateForm() {
-    // 부합리 유형 검사
-    var exposure = document.getElementById("exposure").value;
-    if (exposure === "") {
-        alert("부합리 유형을 입력해주세요.");
-        return false;
-    }
-
-    // 위치 또는 작업 검사
-    var workOrlocation = document.getElementById("workOrlocation").value;
-    if (workOrlocation === "") {
-        alert("위치 또는 작업을 입력해주세요.");
-        return false;
-    }
-
-    // 내용 검사
-    var content = document.getElementById("content").value;
-    if (content === "") {
-        alert("내용을 입력해주세요.");
-        return false;
-    }
-
-    // 모든 검사를 통과하면 true 반환
-    return true;
-}

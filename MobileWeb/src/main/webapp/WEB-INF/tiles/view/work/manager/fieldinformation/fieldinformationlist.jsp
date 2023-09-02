@@ -11,14 +11,14 @@
     <div class="icon_arrow_r"><img src="/assets/admin/icon_arrow_next.png" alt="바로가기"></div>
   </div>
   </a>
-  <a href="myFieldInfo_all.html">
+  <a href="/work/manager/fieldinformation/myFieldInfoAll">
   <div class="btn_main_menu">
     <div class="icon_menu"><img src="/assets/admin/icon_district.png" alt=""></div>
     <div class="menu_txt">행정 구역별 보기</div>
     <div class="icon_arrow_r"><img src="/assets/admin/icon_arrow_next.png" alt="바로가기"></div>
   </div>
   </a>
-  <a href="myFieldInfo_builder.html">
+  <a href="/work/manager/fieldinformation/myFieldInfoAll?gubun=CONST_ALL">
   <div class="btn_main_menu">
     <div class="icon_menu"><img src="/assets/admin/icon_main02.png" alt=""></div>
     <div class="menu_txt">시공사별 보기</div>

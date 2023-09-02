@@ -16,9 +16,6 @@ public class StateMySiteInfoRequest implements Serializable {
     private String companyName;
     private String sDate;
     private String eDate;
-    private String pageNo;
-    private String pageSize;
-    private String etcParam;
 
     public String getGubun() {
         return gubun;
@@ -69,7 +66,7 @@ public class StateMySiteInfoRequest implements Serializable {
     }
 
     public String getRegionName() {
-        return regionName;
+        return this.regionName;
     }
 
     public void setRegionName(String regionName) {
@@ -100,27 +97,8 @@ public class StateMySiteInfoRequest implements Serializable {
         this.eDate = eDate;
     }
 
-    public String getPageNo() {
-        return pageNo;
-    }
-
-    public void setPageNo(String pageNo) {
-        this.pageNo = pageNo;
-    }
-
-    public String getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(String pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public String getEtcParam() {
-        return etcParam;
-    }
-
-    public void setEtcParam(String etcParam) {
-        this.etcParam = etcParam;
+    @Override
+    public String toString(){
+        return "StateMySiteInfoRequest [gubun=" + gubun + ", userid=" + userid + ", grade=" + grade + ", svgCode=" + svgCode + ", constCode=" + constCode + ", siteCode=" + siteCode + ", regionName=" + regionName + ", companyName=" + companyName + ", sDate=" + sDate + ", eDate=" + eDate + "]";
     }
 }

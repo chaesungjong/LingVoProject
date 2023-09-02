@@ -11,18 +11,20 @@
         <div class="table_th">안전활동<br/>완료</div>
         <div class="table_th">작업중지<br/>요청</div>	
     </div>
-    <c:forEach items="${result}" var="data">
+    <c:forEach items="${result}" var="data" varStatus="status">
         <div class="table_wrap mt10">			
-            <div class="table_td name"><a href="myFieldInfo_employee.html">${data.companyName}</a></div>
+            <div class="table_td name">${data.companyName}</div>
             <div class="table_td">${data.nWork}</div>
             <div class="table_td">${data.nSafeEnd}</div>
-            <div class="table_td"><a href="myFieldInfo_employee.html">${data.nWorkStopRequest}</a></div>
+            <div class="table_td"><a href="/work/manager/fieldinformation/myFieldInfoStop?siteCode=${data.siteCode}&companyName=${data.companyName}">${data.nWorkStopRequest}</a></div>
         </div>
+        <c:if test="${status.last}">
+            <div class="table_wrap mt10">			
+                <div class="table_td name bold">합계</div>
+                <div class="table_td bold">${data.nWork}</div>
+                <div class="table_td bold">${data.nSafeEnd}</div>
+                <div class="table_td bold">${data.nWorkStopRequest}</div>
+            </div> 
+        </c:if>
     </c:forEach>
-    <div class="table_wrap mt10">			
-        <div class="table_td name bold">합계</div>
-        <div class="table_td bold">0</div>
-        <div class="table_td bold">0</div>
-        <div class="table_td bold"></div>
-    </div>
 </div>
