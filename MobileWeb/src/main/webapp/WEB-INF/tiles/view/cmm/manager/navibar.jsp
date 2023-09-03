@@ -15,7 +15,7 @@
 		<ul>
 			<li><a href="/work/manager/fieldinformation/fieldinformationlist">My 현장정보</a></li>
 			<li><a href="/board/noticeBoard?Gubun=Notice">공지사항</a></li>
-			<li><a href="/work/manager/irrationality/Mainirrationality">부합리 적발</a></li>		
+			<li><a href="/work/manager/irrationality/Mainirrationality">불합리 적발</a></li>		
 			<li><a href="/cs/emrContact">비상 연락망</a></li>
 		</ul>
 		<div class="tit_category">고객센터</div>

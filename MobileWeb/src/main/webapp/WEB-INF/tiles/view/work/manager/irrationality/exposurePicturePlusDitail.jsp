@@ -5,7 +5,7 @@
   <div id="container">		
     <div class="today_wrap mt30">	
       <div class="today_info" id="exposure">
-        <div class="today_th">부합리 유형</div>
+        <div class="today_th">불합리 유형</div>
         <div class="today_td"><input type="text" id="InputExposure"  name="InputExposure"></div>
       </div>		
       <div class="today_info" id="worker">
