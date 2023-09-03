@@ -76,7 +76,7 @@ function typeAnimation($element, message, speed = 50) {
   $element.html(''); // 요소의 내용을 초기화
 
   // <br> 태그를 실제 줄 바꿈 문자로 변환
-  message = "반드시!<br>" + message ;
+  message = "반드시!<br><br>" + message ;
   message = message.replace(/<br>/g, '\n');
 
   let i = 0;

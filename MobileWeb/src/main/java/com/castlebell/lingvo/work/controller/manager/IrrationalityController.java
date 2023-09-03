@@ -101,7 +101,7 @@ public class IrrationalityController extends CommonController {
 
         illegalInfoModify.setGubun("regist");
         illegalInfoModify.setUserid(member.getUserid());
-        illegalInfoModify.setsiteCode(member.getsiteCode());
+        illegalInfoModify.setsiteCode(StringUtil.objectToString(member.getsiteCode()));
         illegalInfoModify.setillegalClass(illegalClass);
         illegalInfoModify.setillegalGubun(gubun);
         illegalInfoModify.setillegalUserid(InputWorker);
