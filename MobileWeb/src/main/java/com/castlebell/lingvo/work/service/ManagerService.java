@@ -5,6 +5,8 @@ import java.util.List;
 import com.castlebell.lingvo.work.dao.domain.request.IllegalInfoModify;
 import com.castlebell.lingvo.work.dao.domain.request.StateMySiteInfoRequest;
 import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoRegionSiteResponse;
+import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoSiteWorkAllCompResponse;
+import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoUserWorkStopResponse;
 import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoRegionAllResponse;
 import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoRegionCompanyResponse;
 import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoWorkAllResponse;
@@ -36,6 +38,11 @@ public interface ManagerService {
      * My현장정보 통계
      */
     List<StatMySiteInfoWorkStopResponse> statMySiteInfoWorkStopResponse(StateMySiteInfoRequest statMySiteInfoRequest);
+
+    
+    List<StatMySiteInfoSiteWorkAllCompResponse> statMySiteInfoSiteWorkAllCompResponse(StateMySiteInfoRequest statMySiteInfoRequest);
+
+    List<StatMySiteInfoUserWorkStopResponse> statMySiteInfoUserWorkStopResponse(StateMySiteInfoRequest statMySiteInfoRequest);
 
     /**
      * 부적합 적발 사진 등록

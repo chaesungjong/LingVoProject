@@ -16,6 +16,7 @@ public class StateMySiteInfoRequest implements Serializable {
     private String companyName;
     private String sDate;
     private String eDate;
+    private String workUserid;
 
     public String getGubun() {
         return gubun;
@@ -77,7 +78,7 @@ public class StateMySiteInfoRequest implements Serializable {
         return this.companyName;
     }
 
-    public void setCompnayName(String companyName) {
+    public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
 
@@ -97,8 +98,16 @@ public class StateMySiteInfoRequest implements Serializable {
         this.eDate = eDate;
     }
 
+    public String getWorkUserid() {
+        return workUserid;
+    }
+
+    public void setWorkUserid(String workUserid) {
+        this.workUserid = workUserid;
+    }
+
     @Override
     public String toString(){
-        return "StateMySiteInfoRequest [gubun=" + gubun + ", userid=" + userid + ", grade=" + grade + ", svgCode=" + svgCode + ", constCode=" + constCode + ", siteCode=" + siteCode + ", regionName=" + regionName + ", companyName=" + companyName + ", sDate=" + sDate + ", eDate=" + eDate + "]";
+        return "StateMySiteInfoRequest [gubun=" + gubun + ", userid=" + userid + ", grade=" + grade + ", svgCode=" + svgCode + ", constCode=" + constCode + ", siteCode=" + siteCode + ", regionName=" + regionName + ", companyName=" + companyName + ", sDate=" + sDate + ", eDate=" + eDate + ", workUserid=" + workUserid + "]";
     }
 }

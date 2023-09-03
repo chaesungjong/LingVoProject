@@ -41,6 +41,12 @@ $(document).ready(function() {
 
     $("#next").click(function() {
         
+        if(forbiddenWordsCheck($("#requestcontent").val()) || forbiddenWordsCheck($("#location").val())){
+
+            alert('금지된 단어가 포함되어 있습니다.');
+            return;
+        }
+
         if(issueCode == 'WR_ETC'){
             $("#reqReason").val($('#requestcontent').val());
         }

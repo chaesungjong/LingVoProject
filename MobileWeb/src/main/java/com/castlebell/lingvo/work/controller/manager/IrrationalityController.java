@@ -95,7 +95,7 @@ public class IrrationalityController extends CommonController {
         String InputContent  = StringUtil.objectToString(request.getParameter("InputContent"));
         String imgPaths      = StringUtil.objectToString(request.getParameter("imgPaths"));
         String illegalClass  = StringUtil.objectToString(request.getParameter("illegalClass"));
-        String gubun = "build".equals(illegalClass) ? "시설물 불합리" : "근로자 불합리";
+        String gubun = "build".equals(illegalClass) ? "BUILD" : "WOKER";
 
         IllegalInfoModify illegalInfoModify = new IllegalInfoModify();
 

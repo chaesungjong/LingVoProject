@@ -20,7 +20,7 @@
     </div>
 
     <div class="btn_strock mt30">
-      <a href="/work/manager/fieldinformation/myFieldInfoAll" class="btn_ok_s">자세히 보기</a>
+      <a href="/work/manager/fieldinformation/myFieldInfoAll" class="btn_ok_s" id="myFieldInfo">자세히 보기</a>
     </div>
 
     <div class="txt_h5 mt30">
@@ -31,3 +31,12 @@
   </div>			
   
 </div>
+<script>
+  $(document).ready(function(){
+    if (grade == "C1") {
+      $("#myFieldInfo").attr("href", "/work/manager/fieldinformation/myFieldInfoCompany");
+    }else if(grade == "C2"){
+      $("#myFieldInfo").attr("href", "/work/manager/fieldinformation/myFieldInfoField");
+    }
+  });
+</script>

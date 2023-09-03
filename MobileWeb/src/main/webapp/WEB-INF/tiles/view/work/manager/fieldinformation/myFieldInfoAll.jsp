@@ -29,7 +29,7 @@
             <div class="table_td">
                 <c:choose>
                     <c:when test="${data.siteSubAddr2 == null}">
-                        <a href="/work/manager/fieldinformation/myFieldInfoField?constCode=${data.constCode}&nWork=${data.nWork}&nSafeEnd=${data.nSafeEnd}&nWorkStopRequest=${data.nWorkStopRequest}">보기</a>
+                        <a href="/work/manager/fieldinformation/myFieldInfoField?constName=${data.constName}&constCode=${data.constCode}&nWork=${data.nWork}&nSafeEnd=${data.nSafeEnd}&nWorkStopRequest=${data.nWorkStopRequest}">보기</a>
                     </c:when>
                     <c:otherwise>
                         <a href="/work/manager/fieldinformation/myFieldInfoField?siteSubAddr2=${data.siteSubAddr2}&nWork=${data.nWork}&nSafeEnd=${data.nSafeEnd}&nWorkStopRequest=${data.nWorkStopRequest}">보기</a>

@@ -7,7 +7,8 @@
     <div class="today_safety">			
         <div><img src="/assets/img_noti_top.png"  alt=""></div>
         <div class="safety_box">
-            <div class="safety_txt" id="title"></div>
+            <div class="safety_txt" id="title">
+            </div>
             <div class="safety_num"><strong id="click"></strong><span>/</span><strong id="total">10</strong></div>
         </div>
         <div><img src="/assets/img_noti_bottom.png" alt=""></div>
