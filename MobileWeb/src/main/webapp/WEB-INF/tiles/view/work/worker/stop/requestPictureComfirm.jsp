@@ -5,7 +5,7 @@
         <div class="safety_result">"전송이 완료되었습니다."</div>
         <div class="safety_result_info">${Msg}</div>
         <div class="btn_strock mt30">
-            <a  id="next" href="/work/manager/fieldinformation/fieldinformationlist" class="btn_ok_s">확인</a>
+            <a  id="next" href="#" class="btn_ok_s">확인</a>
         </div>
     </div>
 </div>

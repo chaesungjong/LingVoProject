@@ -34,7 +34,7 @@
     // 사용자 이름과 아이디 변수 선언
     var userName     = '<%= userName %>';
     var userid       = '<%= userid %>';
-    var userName     = '<%= userName %>';
+    var grade        = '<%= grade %>';
 </script>
 <!-- 주요 콘텐츠 영역 -->
 <main>

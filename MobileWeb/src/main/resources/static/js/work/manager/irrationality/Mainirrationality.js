@@ -6,6 +6,8 @@ $(document).ready(initializeEvents());
 function initializeEvents() {
     // 메인 메뉴 버튼 클릭 이벤트 설정
     $('.btn_main_menu').on('click', handleMainMenuButtonClick);
+    
+    localStorage.setItem("illegalClass", null);
 }
 
 /**

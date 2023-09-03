@@ -28,6 +28,7 @@
       </div>
       <div class="btn_strock mt30"><a id="next" href="#" class="btn_ok_s">다음</a></div>			
     </div>
+  </div>
     <input type="hidden" id="illegalClass"  name="illegalClass">
   </form>
   <script src="/js/work/manager/irrationality/exposurePicturePlusDitail.js"></script>

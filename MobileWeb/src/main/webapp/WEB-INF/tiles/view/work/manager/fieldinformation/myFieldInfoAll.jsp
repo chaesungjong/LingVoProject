@@ -29,13 +29,19 @@
             <div class="table_td">
                 <c:choose>
                     <c:when test="${data.siteSubAddr2 == null}">
-                        <a href="/work/manager/fieldinformation/myFieldInfoField?constCode=${data.constCode}">보기</a>
+                        <a href="/work/manager/fieldinformation/myFieldInfoField?constCode=${data.constCode}&nWork=${data.nWork}&nSafeEnd=${data.nSafeEnd}&nWorkStopRequest=${data.nWorkStopRequest}">보기</a>
                     </c:when>
                     <c:otherwise>
-                        <a href="/work/manager/fieldinformation/myFieldInfoField?siteSubAddr2=${data.siteSubAddr2}">보기</a>
+                        <a href="/work/manager/fieldinformation/myFieldInfoField?siteSubAddr2=${data.siteSubAddr2}&nWork=${data.nWork}&nSafeEnd=${data.nSafeEnd}&nWorkStopRequest=${data.nWorkStopRequest}">보기</a>
                     </c:otherwise>
                 </c:choose>
             </div>			
         </div>
     </c:forEach>
+    <div class="table_wrap mt10">			
+        <div class="table_td name bold">합계</div>
+        <div class="table_td bold">${totalResult.nWork}</div>
+        <div class="table_td bold">${totalResult.nSafeEnd}</div>
+        <div class="table_td bold">${totalResult.nWorkStopRequest}</div>
+    </div> 
 </div>

@@ -18,5 +18,5 @@ function handleMainMenuButtonClick() {
     localStorage.setItem("issueCode", $(this).attr("value"));
     
     // 이슈 구분 값에 따라 작업자의 중지 메시지 목록 페이지로 이동
-    location.href = "/work/manager/irrationality/exposurePicturePlus";
+    location.href = "/work/worker/stop/stopMessageList?issueGubun=" + $(this).attr("value");
 }

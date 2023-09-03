@@ -17,16 +17,7 @@ public class ForbiddenWordFilter extends OncePerRequestFilter {
 
     private static final List<String> FORBIDDEN_WORDS = Arrays.asList(
         // SQL 인젝션
-        "OR '1'='1'", "DROP TABLE", "--", ";", "UNION", "SELECT", "INSERT", "UPDATE", "DELETE", 
-    
-        // 크로스 사이트 스크립팅(XSS)
-        "<script>", "alert(", "document.cookie", "window.location", "<img", "onload", "onerror",
-    
-        // 시스템 명령어 실행
-        ";", "&&", "|", ">", "rm ", "shutdown ", "echo", "ls ", "cat ", 
-    
-        // 디렉토리 탐색(Directory Traversal)
-        "../", "..\\", "%2e%2e/", "%2e%2e\\"
+         "DROP TABLE",  "UNION", "SELECT", "INSERT", "UPDATE", "DELETE"
     );
 
     @Override
@@ -41,8 +32,11 @@ public class ForbiddenWordFilter extends OncePerRequestFilter {
         String body = getRequestBody(cachingRequest);
 
         for (String word : FORBIDDEN_WORDS) {
-            if (body.contains(word)) {
-                response.sendRedirect("/errorPage");
+            //if (body.toLowerCase().contains(word)) {
+            if(body.toLowerCase().contains(word.toLowerCase()) && body.length() > 0 ) {
+                
+                response.sendRedirect(request.getContextPath() + "/mmb/login");
+                
                 return;
             }
         }

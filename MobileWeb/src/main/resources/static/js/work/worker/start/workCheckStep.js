@@ -73,16 +73,23 @@ function updateUI(item) {
 * @param {number} [speed=50] - 각 문자가 타이핑되는 속도 (밀리초 단위)
 */
 function typeAnimation($element, message, speed = 50) {
-  $element.text(''); // 요소의 내용을 초기화
+  $element.html(''); // 요소의 내용을 초기화
+
+  // <br> 태그를 실제 줄 바꿈 문자로 변환
+  message = "반드시!<br>" + message ;
+  message = message.replace(/<br>/g, '\n');
+
   let i = 0;
 
   // 문자를 하나씩 화면에 표시하는 재귀 함수
   function type() {
       if (i < message.length) {
-          $element.append(message.charAt(i));
+          // 줄 바꿈 문자가 있을 경우 <br> 태그로 다시 변환
+          const charToAdd = message.charAt(i) === '\n' ? '<br>' : message.charAt(i);
+          $element.append(charToAdd);
           i++;
           setTimeout(type, speed);
-      }else{
+      } else {
           $("#next").removeClass("btn_ok_stop").addClass("btn_ok_s");
           isLinkDisabled = true; // 버튼 활성화
       }

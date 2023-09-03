@@ -8,10 +8,12 @@
 		<div class="txt_mn">10짱TV</div>
 	</div>
 	</a>
+	<a href="/work/manager/main">
 	<div class="mn_wrap">
 		<div class="icon_mn"><img src="/assets/admin/icon_mn01_home_on.png" alt=""></div>
 		<div class="txt_mn">home</div>
 	</div>
+	</a>
 	<a href="/cs/emrContact">
 	<div class="mn_wrap">
 		<div class="icon_mn"><img src="/assets/admin/icon_mn02_network.png" alt=""></div>

@@ -91,11 +91,11 @@ public class IrrationalityController extends CommonController {
         }
 
         Member member = (Member) session.getAttribute("member");
-        String InputExposure = StringUtil.objectToString("근로자 불합리 적발");
         String InputWorker   = StringUtil.objectToString(request.getParameter("InputWorker"));
         String InputContent  = StringUtil.objectToString(request.getParameter("InputContent"));
         String imgPaths      = StringUtil.objectToString(request.getParameter("imgPaths"));
         String illegalClass  = StringUtil.objectToString(request.getParameter("illegalClass"));
+        String gubun = "build".equals(illegalClass) ? "시설물 불합리" : "근로자 불합리";
 
         IllegalInfoModify illegalInfoModify = new IllegalInfoModify();
 
@@ -103,7 +103,7 @@ public class IrrationalityController extends CommonController {
         illegalInfoModify.setUserid(member.getUserid());
         illegalInfoModify.setsiteCode(member.getsiteCode());
         illegalInfoModify.setillegalClass(illegalClass);
-        illegalInfoModify.setillegalGubun(InputExposure);
+        illegalInfoModify.setillegalGubun(gubun);
         illegalInfoModify.setillegalUserid(InputWorker);
         illegalInfoModify.setlocation("");
         illegalInfoModify.setillegalClass(InputContent);

@@ -120,8 +120,16 @@ public class FieldInformationController extends CommonController {
         
         // 현장 정보 전체 조회 요청 및 결과 모델에 추가
         List<StatMySiteInfoRegionAllResponse> result = managerService.statMySiteInfoRegionAllResponse(stateMySiteInfoRequest);
+
         model.addAttribute("result", result);
         model.addAttribute("category", category);
+
+        // 현장 정보 요청 객체 생성 및 설정
+        stateMySiteInfoRequest = createStateMySiteInfoRequest(member, "WORK_ALL", "","", "","","","");
+        
+        // 현장 정보 조회 요청 및 결과 모델에 추가
+        StatMySiteInfoWorkAllResponse totalResult = managerService.statMySiteInfoWorkAllResponse(stateMySiteInfoRequest);
+        model.addAttribute("totalResult", totalResult);
         
         // 현장 정보 전체 조회 페이지 URL 반환
         return FieldInformationMapping + "/myFieldInfoAll";
@@ -144,6 +152,9 @@ public class FieldInformationController extends CommonController {
         // 현장명
         String title = StringUtil.objectToString(request.getParameter("siteSubAddr2"));
         String gubun = "REGION_SITE";
+        String nWork = StringUtil.objectToString(request.getParameter("nWork"));
+        String nSafeEnd = StringUtil.objectToString(request.getParameter("nSafeEnd"));
+        String nWorkStopRequest = StringUtil.objectToString(request.getParameter("nWorkStopRequest"));
 
         if("".equals(title)){
             title = StringUtil.objectToString(request.getParameter("constCode"));
@@ -155,8 +166,11 @@ public class FieldInformationController extends CommonController {
 
         
         List<StatMySiteInfoRegionSiteResponse> result = managerService.statMySiteInfoRegionSiteResponse(stateMySiteInfoRequest);
-        model.addAttribute("result", result); // 구분
-        model.addAttribute("title", title);   // 타이틀
+        model.addAttribute("result", result);                       // 구분
+        model.addAttribute("title", title);                         // 타이틀
+        model.addAttribute("nWork", nWork);                         // 총 인원
+        model.addAttribute("nSafeEnd", nSafeEnd);                   // 안전 활동 완료
+        model.addAttribute("nWorkStopRequest", nWorkStopRequest);   // 작업 중지 요청
         return FieldInformationMapping + "/myFieldInfoField";
     }
 
@@ -176,14 +190,23 @@ public class FieldInformationController extends CommonController {
         Member member = (Member) session.getAttribute("member");
 
          // 현장명
-        String title = StringUtil.objectToString(request.getParameter("siteCode"));
+        String title = StringUtil.objectToString(request.getParameter("siteName"));
+        String siteCode = StringUtil.objectToString(request.getParameter("siteCode"));
+        String nWork = StringUtil.objectToString(request.getParameter("nWork"));
+        String nSafeEnd = StringUtil.objectToString(request.getParameter("nSafeEnd"));
+        String nWorkStopRequest = StringUtil.objectToString(request.getParameter("nWorkStopRequest"));
 
         // 현장 정보 요청 객체 생성 및 설정
-        StateMySiteInfoRequest stateMySiteInfoRequest = createStateMySiteInfoRequest( member, "REGION_COMPANY","","", title,"", DateFormatter.formatShortDate(), "");
+        StateMySiteInfoRequest stateMySiteInfoRequest = createStateMySiteInfoRequest( member, "REGION_COMPANY","","", siteCode,"", DateFormatter.formatShortDate(), "");
      
         List<StatMySiteInfoRegionCompanyResponse> result = managerService.statMySiteInfoRegionCompanyResponse(stateMySiteInfoRequest);
-        model.addAttribute("result", result); // 구분
-        model.addAttribute("title", title);   // 타이틀
+        
+        model.addAttribute("result", result);                       // 구분
+        model.addAttribute("title", title);                         // 타이틀
+        model.addAttribute("nWork", nWork);                         // 총 인원
+        model.addAttribute("nSafeEnd", nSafeEnd);                   // 안전 활동 완료
+        model.addAttribute("nWorkStopRequest", nWorkStopRequest);   // 작업 중지 요청
+
         return FieldInformationMapping + "/myFieldInfoCompany";
     }
 
@@ -257,12 +280,24 @@ public class FieldInformationController extends CommonController {
         stateMySiteInfoRequest.setUserid(member.getUserid()); 
         // 사용자 구분 값 (관리자, 감독관, 노무자)              
         stateMySiteInfoRequest.setGrade(member.getGrade());
+        if(member.getGrade().contains("C2")){
+            // 업체 코드 (HYUNDAI, SAMSUNG 등등 업체 이름)
+            stateMySiteInfoRequest.setConstCode(member.getConstCode());
+        }else{
+            // 업체 코드 (HYUNDAI, SAMSUNG 등등 업체 이름)
+            stateMySiteInfoRequest.setConstCode(constCode);
+        }
         // 지역 구분 값 (sacheon 기타 등등 지역 이름)
         stateMySiteInfoRequest.setSvgCode(member.getSvgCode());
-        // 업체 코드 (HYUNDAI, SAMSUNG 등등 업체 이름)
-        stateMySiteInfoRequest.setConstCode(constCode);
         // 현장 코드 (ST_0000001)
         stateMySiteInfoRequest.setSiteCode(siteCode);
+        if(member.getGrade().contains("C1")){
+            // 업체 코드 (HYUNDAI, SAMSUNG 등등 업체 이름)
+            stateMySiteInfoRequest.setSiteCode(member.getsiteCode());
+        }else{
+            // 현장 코드 (ST_0000001)
+            stateMySiteInfoRequest.setSiteCode(siteCode);
+        }
         // 지역 이름 설정 (3단 연산자로 변경)
         stateMySiteInfoRequest.setRegionName(regionName);
         // 회사 이름 

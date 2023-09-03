@@ -51,7 +51,7 @@ public class StartWorkController extends CommonController {
         // 작업 정보 조회
         WorkSafetyCheck result = workService.getSiteInfo(session, request);
         if (!"0".equals(result.getErrCode())) {
-            redirectAttributes.addAttribute("errMsg", result.getErrMsg());
+            redirectAttributes.addAttribute("errMsg", "QR코드 인식이 잘못되었습니다. 다시 인식해주세요.");
             return "redirect:/work/worker/main";
         }
 

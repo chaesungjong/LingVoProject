@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     var imageList = [];
+    localStorage.setItem("issuesImageList", null);
     /**
      * 사진 추가
      */
@@ -9,16 +10,17 @@ $(document).ready(function() {
         var callback = function(image){
             imageList.push(image);
             $('#imageDiv').append('<img src='+image+' alt="Description" />');
+            $("#loding").hide();
         };
-
         callCamera(callback); 
     });
 
     $("#addGallery").click(function() {
-
+        
         var callback = function(image){
             imageList.push(image);
             $('#imageDiv').append('<img src='+image+' alt="Description" />');
+            $("#loding").hide();
         };
 
         callGallery(callback); 

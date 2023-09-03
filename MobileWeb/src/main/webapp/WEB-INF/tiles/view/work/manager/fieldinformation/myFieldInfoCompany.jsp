@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div id="container">		
     <div class="info_wrap">			
-        <div class="txt_h1"><span>전체보기 &gt; 현장명</span> &gt; 대포동사무소리모델링</div>			
+        <div class="txt_h1"><span>전체보기 &gt; 현장명</span> &gt; ${title}</div>			
     </div>
 
     <div class="table_wrap mt30">			
@@ -18,13 +18,11 @@
             <div class="table_td">${data.nSafeEnd}</div>
             <div class="table_td"><a href="/work/manager/fieldinformation/myFieldInfoStop?siteCode=${data.siteCode}&companyName=${data.companyName}">${data.nWorkStopRequest}</a></div>
         </div>
-        <c:if test="${status.last}">
-            <div class="table_wrap mt10">			
-                <div class="table_td name bold">합계</div>
-                <div class="table_td bold">${data.nWork}</div>
-                <div class="table_td bold">${data.nSafeEnd}</div>
-                <div class="table_td bold">${data.nWorkStopRequest}</div>
-            </div> 
-        </c:if>
     </c:forEach>
+    <div class="table_wrap mt10">			
+        <div class="table_td name bold">합계</div>
+        <div class="table_td bold">${nWork}</div>
+        <div class="table_td bold">${nSafeEnd}</div>
+        <div class="table_td bold">${nWorkStopRequest}</div>
+    </div> 
 </div>

@@ -19,15 +19,13 @@
             <div class="table_td"><c:out value="${data.nWork}" /></div>
             <div class="table_td"><c:out value="${data.nSafeEnd}" /></div>
             <div class="table_td"><c:out value="${data.nWorkStopRequest}" /></div>
-            <div class="table_td"><a href="/work/manager/fieldinformation/myFieldInfoCompany?siteCode=${data.siteCode}">보기</a></div>			
+            <div class="table_td"><a href="/work/manager/fieldinformation/myFieldInfoCompany?siteCode=${data.siteCode}&siteName=${data.siteName}&nWork=${data.nWork}&nSafeEnd=${data.nSafeEnd}&nWorkStopRequest=${data.nWorkStopRequest}">보기</a></div>			
         </div>
-        <c:if test="${status.last}">
-            <div class="table_wrap mt10">			
-                <div class="table_td name bold">합계</div>
-                <div class="table_td bold">${data.nWork}</div>
-                <div class="table_td bold">${data.nSafeEnd}</div>
-                <div class="table_td bold">${data.nWorkStopRequest}</div>
-            </div> 
-        </c:if>
     </c:forEach>
+    <div class="table_wrap mt10">			
+        <div class="table_td name bold">합계</div>
+        <div class="table_td bold">${nWork}</div>
+        <div class="table_td bold">${nSafeEnd}</div>
+        <div class="table_td bold">${nWorkStopRequest}</div>
+    </div> 
 </div>

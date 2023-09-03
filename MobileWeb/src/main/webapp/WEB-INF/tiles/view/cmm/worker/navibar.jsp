@@ -22,7 +22,6 @@
 		<div class="tit_category">고객센터</div>
 		<ul>
 			<li><a href="/board/noticeBoard?Gubun=Notice">공지 사항</a></li>
-			<li><a href="/cs/faq">FAQ</a></li>
 			<li><a href="tel:02-1111-2222">고객센터 전화걸기</a></li>
 		</ul>
 		<!-- <div class="tit_category">회원정보</div>
