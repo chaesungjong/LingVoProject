@@ -113,5 +113,53 @@
           #{illegalGubun},  #{illegalUserid},  #{location},  #{content},  #{imgPaths},  #{state},  #{ip},  #{ilgSeq},  #{errMsg, mode=OUT, jdbcType=VARCHAR} ) 
     }
   </select>
+
+    <!-- 안전예방활동체크 질문 리스트 End -->
+  <resultMap id="statMySiteInfoSiteWorkAllCompResponseMap" type="com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoSiteWorkAllCompResponse">
+      <result property="userid"      column="userid" />
+      <result property="name" column="name" />      
+      <result property="hpno"      column="hpno" />     
+      <result property="nSafeEnd" column="nSafeEnd" />
+      <result property="nWorkStopRequest" column="nWorkStopRequest" />
+  </resultMap>
+  <select id="statMySiteInfoSiteWorkAllCompResponse" resultMap="statMySiteInfoSiteWorkAllCompResponseMap" statementType="CALLABLE">
+      { call [dbo].[illegalInfoModify](
+          #{gubun},
+          #{userid},
+          #{siteCode},
+          #{illegalClass},
+          #{illegalGubun},
+          #{illegalUserid},
+          #{location},
+          #{content},
+          #{imgPaths},
+          #{ip},
+          #{ilgSeq}
+    )}
+  </select>
+
+  <!-- 안전예방활동체크 질문 리스트 End -->
+  <resultMap id="statMySiteInfoUserWorkStopResponseMap" type="com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoUserWorkStopResponse">
+      <result property="regdate"      column="regdate" />
+      <result property="siteName" column="siteName" />      
+      <result property="name"      column="name" />     
+      <result property="reqReason" column="reqReason" />
+  </resultMap>
+  <select id="statMySiteInfoUserWorkStopResponse" resultMap="statMySiteInfoUserWorkStopResponseMap" statementType="CALLABLE">
+      { call [dbo].[statMySiteInfo](
+          #{gubun},
+          #{userid},
+          #{grade},
+          #{svgCode},
+          #{constCode},
+          #{siteCode},
+          #{regionName},
+          #{compnayName},
+          #{sDate},
+          #{eDate},
+          #{workUserid}
+    )}
+  </select>
+
   
 </mapper>

@@ -1,11 +1,15 @@
 $(document).ready(function() {
     
-    if (grade.indexOf('S') != -1) {
-        $("#grade").show();
+    if (grade == 'S1') {
+        $("#S1").show();
     } 
 
-    $(".col-md-4").click(function() {
-        location.href = "/work/manager/fieldinformation/choiceFiedList?select=" +$(this).find("input").val();
-    });
+    if (grade == 'C2') {
+        $("#C2").show();
+    } 
+
+    if (grade == 'C1') {
+        $("#C1").show();
+    } 
 
 });

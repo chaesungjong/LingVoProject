@@ -9,6 +9,8 @@ import com.castlebell.lingvo.work.dao.domain.request.StateMySiteInfoRequest;
 import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoRegionAllResponse;
 import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoRegionCompanyResponse;
 import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoRegionSiteResponse;
+import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoSiteWorkAllCompResponse;
+import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoUserWorkStopResponse;
 import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoWorkAllResponse;
 import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoWorkStopResponse;
 
@@ -53,6 +55,20 @@ public interface ManagerMapper {
      * @return
      */
     List<StatMySiteInfoWorkStopResponse> statMySiteInfoWorkStopResponse(StateMySiteInfoRequest statMySiteInfoRequest);
+
+    /**
+     * My현장정보 통계
+     * @param statMySiteInfoRequest
+     * @return
+     */
+    List<StatMySiteInfoSiteWorkAllCompResponse> statMySiteInfoSiteWorkAllCompResponse(StateMySiteInfoRequest statMySiteInfoRequest);
+
+    /**
+     * My현장정보 통계
+     * @param statMySiteInfoRequest
+     * @return
+     */
+    List<StatMySiteInfoUserWorkStopResponse> statMySiteInfoUserWorkStopResponse(StateMySiteInfoRequest statMySiteInfoRequest);
 
     /**
      * 부적합 적발 사진 등록

@@ -11,6 +11,8 @@ import com.castlebell.lingvo.work.dao.domain.request.StateMySiteInfoRequest;
 import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoRegionAllResponse;
 import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoRegionCompanyResponse;
 import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoRegionSiteResponse;
+import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoSiteWorkAllCompResponse;
+import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoUserWorkStopResponse;
 import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoWorkAllResponse;
 import com.castlebell.lingvo.work.dao.domain.response.StatMySiteInfoWorkStopResponse;
 
@@ -46,10 +48,21 @@ public class ManagerServiceImpl implements ManagerService{
     public List<StatMySiteInfoWorkStopResponse> statMySiteInfoWorkStopResponse(StateMySiteInfoRequest statMySiteInfoRequest) {
         return managerMapper.statMySiteInfoWorkStopResponse(statMySiteInfoRequest);
     }
+
+    @Override
+    public List<StatMySiteInfoSiteWorkAllCompResponse> statMySiteInfoSiteWorkAllCompResponse(StateMySiteInfoRequest statMySiteInfoRequest) {
+        return managerMapper.statMySiteInfoSiteWorkAllCompResponse(statMySiteInfoRequest);
+    }
+
+    @Override
+    public List<StatMySiteInfoUserWorkStopResponse> statMySiteInfoUserWorkStopResponse(StateMySiteInfoRequest statMySiteInfoRequest) {
+        return managerMapper.statMySiteInfoUserWorkStopResponse(statMySiteInfoRequest);
+    }
     
     @Override
     public void illegalInfoModify(IllegalInfoModify illegalInfoModify){
         managerMapper.illegalInfoModify(illegalInfoModify);
     }
+    
 
 }

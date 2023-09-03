@@ -9,9 +9,12 @@ $(document).ready(function() {
     if($("#illegalClass").val() == "worker"){
         $("#worker").show();
         $("#location").hide();
+        $("#location").hide();
+        $("#InputExposure").val("근로자 불합리");
     }else{
         $("#location").show();
         $("#worker").hide();
+        $("#InputExposure").val("시설물 불합리");
     }
 
     // 문제 리스트와 이미지 리스트를 배열로 변환
@@ -24,6 +27,13 @@ $(document).ready(function() {
 
     // '다음' 버튼을 클릭하면 Comfirm 폼 제출
     $("#next").click(function() {
+
+        if(forbiddenWordsCheck($("#InputExposure").val()) || forbiddenWordsCheck($("#InputWorker").val()) || forbiddenWordsCheck($("#InputLocation").val()) || forbiddenWordsCheck($("#InputContent").val()) ){
+
+            alert('금지된 단어가 포함되어 있습니다.');
+            return;
+        }
+
          $('#Comfirm').submit();
     });
 });

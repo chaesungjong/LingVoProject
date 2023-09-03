@@ -66,7 +66,7 @@ const forbiddenWords = [
  **/
 function forbiddenWordsCheck(str) {
   for (let word of forbiddenWords) {
-      if (str.toLowerCase().includes(word)) {
+      if (str.toLowerCase().includes(word.toLowerCase())) {
           return true;
       }
   }
@@ -184,6 +184,6 @@ function logOut(){
     location.href = "/mmb/logout.do"
   }
   catch(e){
-
+    location.href = "/mmb/logout.do"
   }
 }
