@@ -147,6 +147,9 @@ public class MemberController extends CommonController{
 			session.setAttribute("temp_userid", "");
 			return "mmb/login";
 		}
+		
+		pwd = SHA256Util.hashWithSHA256(pwd);
+		pwdNext = SHA256Util.hashWithSHA256(pwdNext);
 
 		resultMap = memberService.pwdInitProcess(request, temp_userid, pwd, pwdNext);
 
