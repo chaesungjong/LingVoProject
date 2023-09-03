@@ -19,12 +19,12 @@ public class CustomerServiceCenterImpl implements CustomerServiceCenterService {
     }
 
     @Override
-    public List<EmergencyInfo> getEmergencyContactList(HttpSession session, String qrCode) {
+    public List<EmergencyInfo> getEmergencyContactList(HttpSession session, String siteCode, String userid) {
 
         HashMap<String, Object> result = new HashMap<String, Object>();
         result.put("gubun","InfoList");
-        result.put("siteCode", qrCode);
-        result.put("etcparam", "");
+        result.put("siteCode", siteCode);
+        result.put("userid", userid);
 
         return customerServiceCenterMapper.getEmergencyInfoList(result);
 

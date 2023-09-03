@@ -46,7 +46,7 @@ public class CustomerServiceCenterController extends CommonController{
 		}
 
 		Member member = (Member) session.getAttribute("member");
-		List<EmergencyInfo> list = customerServiceCenterService.getEmergencyContactList(session,member.getsiteCode());
+		List<EmergencyInfo> list = customerServiceCenterService.getEmergencyContactList(session,member.getsiteCode(), member.getUserid());
 		model.addAttribute("list", list);
         
 	    return "cs/emrContact";

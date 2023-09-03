@@ -16,7 +16,7 @@
     { call [dbo].[emergencyInfoList](
       #{gubun},
       #{siteCode},
-      #{etcparam}
+      #{userid}
       )
     }
   </select>

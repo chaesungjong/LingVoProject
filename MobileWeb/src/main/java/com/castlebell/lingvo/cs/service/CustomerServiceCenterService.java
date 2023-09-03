@@ -16,5 +16,5 @@ public interface CustomerServiceCenterService {
      * 비상연락망 리스트 가져오기 
      * @return
      */
-    List<EmergencyInfo>  getEmergencyContactList(HttpSession session,String qrCode);
+    List<EmergencyInfo>  getEmergencyContactList(HttpSession session,String siteCode,String userid);
 }
