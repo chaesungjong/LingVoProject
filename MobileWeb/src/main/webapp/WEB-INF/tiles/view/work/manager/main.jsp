@@ -8,25 +8,27 @@
 <!-- 날씨 -->
 <div class="weather_position" id="detailLink">
   <div class="w_area">
-    <div class="weather_left">
+    <div class="weather_left" style="width:75%">
       <div class="weather_detail">
         <div class="icon_weather">
           <img src="/assets/icon_weather_good.png" alt="Weather Icon">
         </div>
         <div class="temp" id="currentTemperature">&#8451;</div>
         <div class="conditions" id="todayIconPhrase"></div>
+      </div>
+      <div class="txt_s" id="todayTemperature"></div>
     </div>    
-    <div class="weather_right">
+    <div class="weather_right" style="width:25%">
       <div class="txt_s">
         <span id="regionName" class="txt_normal"></span>
         <a href="#"><img src="/assets/icon_areaSearch.png" alt="위치찾기" class="icon_weather2"></a>
       </div>
     </div>
-    </div>
   </div>
+</div>
 <!-- 업무 내용 -->
 <div id="container">	
-  <div class="main_menu2 mt30">
+  <div class="main_menu2 mt50">
     <a href="/work/manager/fieldinformation/fieldinformationlist">
     <div class="btn_main_menu2">
       <div class="icon_menu2"><img src="/assets/admin/icon_main01.png" alt=""></div>
@@ -47,7 +49,7 @@
       <div class="menu_txt2">불합리 적발</div>
     </div>
     </a>
-    <a href="/work/manager/stop/workReview">
+    <a href="javascript:alert('준비중입니다.');">
     <div class="btn_main_menu2">
       <div class="icon_menu2"><img src="/assets/admin/icon_main04.png" alt=""></div>
       <div class="menu_txt2">작업 후기</div>
@@ -65,7 +67,7 @@
     </div>
   </div>
 </div>
-</div>
+
 <script src="/js/work/manager/main.js"></script>
 
 

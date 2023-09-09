@@ -6,14 +6,14 @@
     </div>
 
     <div class="table_wrap mt30">			
-        <div class="table_th name">작업자</div>
-        <div class="table_th">작업중지 요청 사유</div>	
+        <div class="table_th name" style="width:30%;">작업자</div>
+        <div class="table_th"  style="width:70%;">작업중지 요청 사유</div>	
     </div>
 
     <c:forEach items="${result}" var="data">
         <div class="table_wrap mt10">
-            <div class="table_td name">${data.name}</div>
-            <div class="table_td">${data.reqReason}</div>
+            <div class="table_td" style="width:30%;">${data.name}</div>
+            <div class="table_td" style="width:70%;">${data.reqReason}</div>
         </div>
     </c:forEach>
 

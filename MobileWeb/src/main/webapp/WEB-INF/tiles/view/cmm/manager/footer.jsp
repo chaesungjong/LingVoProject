@@ -5,7 +5,7 @@
 	<a href="/board/videoBoard">
 	<div class="mn_wrap">
 		<div class="icon_mn"><img src="/assets/admin/icon_mn04_10jjang.png" alt=""></div>
-		<div class="txt_mn">10짱TV</div>
+		<div class="txt_mn">십짱TV</div>
 	</div>
 	</a>
 	<a href="/work/manager/main">
